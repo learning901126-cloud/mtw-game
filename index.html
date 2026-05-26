@@ -78,7 +78,7 @@ body {
   gap: 0;
   position: relative;
   overflow: hidden;
-  background-image: url('image/homepage_bg.jpg');
+  background-image: url('homepage_bg.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -362,10 +362,10 @@ body {
 
 /* 分類卡照片底層 */
 .cat-item { background-size: cover; background-position: center; }
-.cat-item[data-cat="ice"]   { background-image: url('image/blue/max-komthongvijit-gpqpneeE86E-unsplash.jpg'); }
-.cat-item[data-cat="star1"] { background-image: url('image/green/aaron-burden-t8MgrNitecE-unsplash.jpg'); }
-.cat-item[data-cat="star2"] { background-image: url('image/brown/pawel-czerwinski-beBBYVJ_4MM-unsplash.jpg'); }
-.cat-item[data-cat="star3"] { background-image: url('image/red/alex-QuPbnSMgu4c-unsplash.jpg'); }
+.cat-item[data-cat="ice"]   { background-image: url('max-komthongvijit-gpqpneeE86E-unsplash.jpg'); }
+.cat-item[data-cat="star1"] { background-image: url('aaron-burden-t8MgrNitecE-unsplash.jpg'); }
+.cat-item[data-cat="star2"] { background-image: url('pawel-czerwinski-beBBYVJ_4MM-unsplash.jpg'); }
+.cat-item[data-cat="star3"] { background-image: url('alex-QuPbnSMgu4c-unsplash.jpg'); }
 
 /* SVG 滿版背景（疊在照片上） */
 .cat-bg {
@@ -662,10 +662,10 @@ body {
 }
 
 /* 照片背景 per category */
-.flip-wrap[data-cat="ice"]   .flip-front { background-image: url('image/blue/max-komthongvijit-gpqpneeE86E-unsplash.jpg'); }
-.flip-wrap[data-cat="star1"] .flip-front { background-image: url('image/green/aaron-burden-t8MgrNitecE-unsplash.jpg'); }
-.flip-wrap[data-cat="star2"] .flip-front { background-image: url('image/brown/pawel-czerwinski-beBBYVJ_4MM-unsplash.jpg'); }
-.flip-wrap[data-cat="star3"] .flip-front { background-image: url('image/red/alex-QuPbnSMgu4c-unsplash.jpg'); }
+.flip-wrap[data-cat="ice"]   .flip-front { background-image: url('max-komthongvijit-gpqpneeE86E-unsplash.jpg'); }
+.flip-wrap[data-cat="star1"] .flip-front { background-image: url('aaron-burden-t8MgrNitecE-unsplash.jpg'); }
+.flip-wrap[data-cat="star2"] .flip-front { background-image: url('pawel-czerwinski-beBBYVJ_4MM-unsplash.jpg'); }
+.flip-wrap[data-cat="star3"] .flip-front { background-image: url('alex-QuPbnSMgu4c-unsplash.jpg'); }
 
 /* 暗化漸層 — 讓 SVG 花紋和文字保持可讀性 */
 .flip-front::before {
@@ -2464,10 +2464,10 @@ function showSpread(cat) {
     card.style.animationDelay = (i * 0.06) + 's';
     // 照片底圖 per category
     const photoMap = {
-      ice:   "image/blue/max-komthongvijit-gpqpneeE86E-unsplash.jpg",
-      star1: "image/green/aaron-burden-t8MgrNitecE-unsplash.jpg",
-      star2: "image/brown/pawel-czerwinski-beBBYVJ_4MM-unsplash.jpg",
-      star3: "image/red/alex-QuPbnSMgu4c-unsplash.jpg"
+      ice:   "max-komthongvijit-gpqpneeE86E-unsplash.jpg",
+      star1: "aaron-burden-t8MgrNitecE-unsplash.jpg",
+      star2: "pawel-czerwinski-beBBYVJ_4MM-unsplash.jpg",
+      star3: "alex-QuPbnSMgu4c-unsplash.jpg"
     };
     const darkMap = { ice: '#0C1C35', star1: '#0B1E12', star2: '#1A0E04', star3: '#140606' };
     const goldMap = { ice: '#C4A860', star1: '#A8C060', star2: '#C8A020', star3: '#C89820' };
