@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>深刻地認識一個人</title>
+<title>說說你 · Tell Me More</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
 <style>
 /* LINE Seed JP — Fontsource CDN */
 @font-face {
@@ -125,34 +125,27 @@ body {
 .welcome-chip span { font-size: 13px; }
 
 .welcome-title {
-  font-family: 'ZCOOL XiaoWei', 'Playfair Display', serif;
+  font-family: 'Noto Serif TC', 'ZCOOL XiaoWei', 'Playfair Display', serif;
   font-size: clamp(40px, 10vw, 68px);
-  font-weight: 400;
+  font-weight: 300;
   text-align: center;
-  line-height: 1.3;
-  letter-spacing: 6px;
+  line-height: 1.35;
+  letter-spacing: 8px;
   margin-bottom: 12px;
   color: #FFFFFF;
-  text-shadow:
-    0 1px 0 rgba(0,0,0,0.9),
-    0 2px 8px rgba(0,0,0,0.95),
-    0 4px 32px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.45);
   position: relative; z-index: 1;
-  /* 標題後面加一層局部暗底，避免跟背景混 */
-  background: radial-gradient(ellipse 80% 120% at 50% 50%, rgba(0,0,0,0.28) 0%, transparent 100%);
-  border-radius: 12px;
-  padding: 8px 16px 4px;
 }
 .welcome-title em {
   font-style: normal;
-  color: rgba(255,255,255,0.80);
+  color: rgba(255,255,255,0.72);
   display: block;
-  font-size: 0.72em;
-  letter-spacing: 8px;
-  margin-top: 4px;
-  text-shadow:
-    0 1px 0 rgba(0,0,0,0.9),
-    0 2px 12px rgba(0,0,0,0.9);
+  font-size: 0.52em;
+  letter-spacing: 10px;
+  margin-top: 6px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.35);
 }
 
 .welcome-en {
@@ -1386,8 +1379,8 @@ body {
 <!-- WELCOME -->
 <div class="screen active" id="welcome">
   <div class="welcome-chip"><span>✦</span> 2–8 人</div>
-  <h1 class="welcome-title">深刻地<br><em>認識一個人</em></h1>
-  <p class="welcome-en">More Than Words</p>
+  <h1 class="welcome-title">說說你<br><em>Tell Me More</em></h1>
+  
   <p class="welcome-desc">透過循序漸進的提問，引導彼此探索內心世界，建立真實而有意義的連結。</p>
   <button class="btn-primary" onclick="goSpeech()">開始遊戲</button>
   <div class="welcome-people">
