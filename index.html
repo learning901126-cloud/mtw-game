@@ -1,0 +1,2651 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>說說你 · Tell Me More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=ZCOOL+XiaoWei&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* LINE Seed JP — Fontsource CDN */
+@font-face {
+  font-family: 'LINE Seed JP';
+  font-style: normal; font-display: swap; font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/line-seed-jp@latest/japanese-400-normal.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'LINE Seed JP';
+  font-style: normal; font-display: swap; font-weight: 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/line-seed-jp@latest/japanese-700-normal.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'LINE Seed JP';
+  font-style: normal; font-display: swap; font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/line-seed-jp@latest/latin-400-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2212,U+2215;
+}
+</style>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #FFFFFF;
+  --off-white: #F7F5F2;
+  --ink: #1A1714;
+  --ink-light: #6B6460;
+  --ink-faint: #C4BFBB;
+  --ice: #3B82C4;
+  --ice-bg: #EEF4FB;
+  --s1: #2E8B57;
+  --s1-bg: #EBF5EF;
+  --s2: #B8860B;
+  --s2-bg: #FBF5E6;
+  --s3: #B03A3A;
+  --s3-bg: #FAF0F0;
+  --radius: 16px;
+}
+
+html { height: 100%; }
+body {
+  background: var(--off-white);
+  color: var(--ink);
+  font-family: 'LINE Seed JP', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Screens ── */
+.screen {
+  display: none;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+}
+.screen.active {
+  display: flex;
+  animation: fadeIn 0.5s ease both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── WELCOME ── */
+#welcome {
+  justify-content: center;
+  padding: 48px 24px;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  background-image: url('homepage_bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* 暗化遮罩 — 加深讓文字清楚 */
+#welcome::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6,4,2,0.70) 0%,
+    rgba(6,4,2,0.58) 45%,
+    rgba(6,4,2,0.72) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+#welcome::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 160px;
+  background: linear-gradient(to top, rgba(6,4,2,0.65), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.welcome-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.28);
+  backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1px;
+  margin-bottom: 32px;
+  position: relative; z-index: 1;
+}
+.welcome-chip span { font-size: 13px; }
+
+.welcome-title {
+  font-family: 'Noto Serif TC', 'ZCOOL XiaoWei', 'Playfair Display', serif;
+  font-size: clamp(40px, 10vw, 68px);
+  font-weight: 300;
+  text-align: center;
+  line-height: 1.35;
+  letter-spacing: 8px;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.45);
+  position: relative; z-index: 1;
+}
+.welcome-title em {
+  font-style: normal;
+  color: rgba(255,255,255,0.72);
+  display: block;
+  font-size: 0.52em;
+  letter-spacing: 10px;
+  margin-top: 6px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+}
+
+.welcome-en {
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 4px;
+  margin-bottom: 44px;
+  position: relative; z-index: 1;
+}
+
+.welcome-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 2;
+  text-align: center;
+  max-width: 300px;
+  margin-bottom: 48px;
+  font-weight: 300;
+  position: relative; z-index: 1;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  padding: 16px 48px;
+  border-radius: 100px;
+  font-family: 'LINE Seed JP', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+.btn-primary:hover {
+  background: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--ink);
+  border: 1.5px solid var(--ink-faint);
+  padding: 13px 32px;
+  border-radius: 100px;
+  font-family: 'LINE Seed JP', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-secondary:hover {
+  border-color: var(--ink-light);
+  background: var(--white);
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  font-family: 'LINE Seed JP', sans-serif;
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: color 0.2s;
+}
+.btn-text:hover { color: var(--ink-light); }
+
+.welcome-people {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative; z-index: 1;
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1px;
+  margin-top: 28px;
+}
+.dot { width: 4px; height: 4px; background: rgba(255,255,255,0.35); border-radius: 50%; }
+
+/* ── SPEECH ── */
+#speech {
+  justify-content: center;
+  padding: 48px 32px;
+  position: relative;
+  background: var(--white);
+}
+
+.speech-skip {
+  position: fixed;
+  top: 20px; right: 20px;
+  background: none;
+  border: 1.5px solid var(--ink-faint);
+  font-family: 'LINE Seed JP', sans-serif;
+  font-size: 11px;
+  color: var(--ink-light);
+  padding: 7px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  z-index: 10;
+}
+.speech-skip:hover { border-color: var(--ink-light); }
+
+.speech-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 56px;
+}
+.speech-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  transition: background 0.4s;
+}
+.speech-dot.active { background: var(--ink); }
+
+.speech-body {
+  max-width: 360px;
+  text-align: center;
+}
+
+.speech-line {
+  font-size: 16px;
+  line-height: 2.2;
+  font-weight: 300;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 1s ease, transform 0.8s ease;
+  transform: translateY(8px);
+  margin-bottom: 32px;
+  white-space: pre-line;
+}
+.speech-line.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.speech-cta {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.speech-cta.show { opacity: 1; }
+
+/* ── SELECT ── */
+#select {
+  padding: 56px 20px 100px;
+  gap: 0;
+  align-items: center;
+}
+
+.select-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.select-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.select-sub {
+  font-size: 13px;
+  color: var(--ink-light);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* ── 分類選擇（塔羅牌風格）── */
+.cat-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 380px;
+  margin-bottom: 28px;
+}
+
+/* 基底卡片 */
+.cat-item {
+  position: relative;
+  aspect-ratio: 1 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.35s ease;
+  animation: fadeIn 0.4s ease both;
+}
+.cat-item:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+}
+.cat-item:active { transform: translateY(-3px) scale(1.01); }
+
+/* 分類卡照片底層 */
+.cat-item { background-size: cover; background-position: center; }
+.cat-item[data-cat="ice"]   { background-image: url('max-komthongvijit-gpqpneeE86E-unsplash.jpg'); }
+.cat-item[data-cat="star1"] { background-image: url('aaron-burden-t8MgrNitecE-unsplash.jpg'); }
+.cat-item[data-cat="star2"] { background-image: url('pawel-czerwinski-beBBYVJ_4MM-unsplash.jpg'); }
+.cat-item[data-cat="star3"] { background-image: url('alex-QuPbnSMgu4c-unsplash.jpg'); }
+
+/* SVG 滿版背景（疊在照片上） */
+.cat-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 進度條 overlay */
+.cat-prog {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.06);
+  z-index: 4;
+}
+.cat-prog-fill {
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transition: width 0.5s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+/* 張數標籤 overlay */
+.cat-count {
+  position: absolute;
+  bottom: 10px; right: 9px;
+  font-size: 7.5px;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.3px;
+  z-index: 4;
+  white-space: nowrap;
+  font-family: 'LINE Seed JP', sans-serif;
+}
+
+.select-hint {
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* ── CARD ── */
+#card-view {
+  padding: 0;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.card-topbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.topbar-back {
+  background: none;
+  border: none;
+  font-family: 'LINE Seed JP', sans-serif;
+  font-size: 13px;
+  color: var(--ink-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+.topbar-back:hover { color: var(--ink); }
+
+.topbar-cat {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+.topbar-cat[data-cat="ice"]   { background: var(--ice-bg); color: var(--ice); }
+.topbar-cat[data-cat="star1"] { background: var(--s1-bg); color: var(--s1); }
+.topbar-cat[data-cat="star2"] { background: var(--s2-bg); color: var(--s2); }
+.topbar-cat[data-cat="star3"] { background: var(--s3-bg); color: var(--s3); }
+
+.topbar-count {
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+/* Card flip area */
+.card-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px 40px;
+  gap: 32px;
+  width: 100%;
+}
+
+/* ── SPREAD STAGE ── */
+.spread-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 40px;
+  gap: 40px;
+}
+
+.spread-hint {
+  font-size: 13px;
+  color: var(--ink-light);
+  letter-spacing: 2px;
+  animation: blink2 2s ease infinite;
+}
+@keyframes blink2 { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+.spread-fan {
+  position: relative;
+  width: 100%;
+  height: min(320px, 45vh);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* 7 張牌的旋轉與位移，以中心為基準 */
+.spread-card {
+  position: absolute;
+  bottom: 0;
+  width: min(140px, 36vw);
+  height: min(230px, 32vh);
+  border-radius: 10px;
+  background-color: #1A1714; /* fallback */
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  cursor: pointer;
+  transform-origin: center bottom;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              opacity 0.4s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* 初始角度由 JS 透過 --r 變數設定 */
+.spread-card { transform: rotate(var(--r, 0deg)); }
+
+/* Hover：上浮並放大 */
+.spread-card:hover:not(.selected):not(.dismissed) {
+  transform: rotate(var(--r, 0deg)) translateY(-20px) scale(1.06) !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  z-index: 10;
+}
+
+/* ── 單一連續動畫，不換 class ── */
+.spread-card.pulling {
+  animation: cardPull 0.52s cubic-bezier(0.4, 0, 0.85, 1) forwards !important;
+  z-index: 20;
+}
+@keyframes cardPull {
+  0%   { transform: rotate(var(--r,0deg)) scale(1); opacity: 1; }
+  18%  { transform: translateY(-26px) rotate(calc(var(--r,0deg) * 0.15)) scale(1.1); opacity: 1; }
+  100% { transform: translateY(-130vh) rotate(0deg) scale(0.35); opacity: 0; }
+}
+
+/* 其他牌同時淡出下沉 */
+.spread-card.dismissed {
+  animation: cardDismiss 0.38s ease forwards !important;
+}
+@keyframes cardDismiss {
+  to { transform: translateY(40px) rotate(var(--r,0deg)) scale(0.82); opacity: 0; }
+}
+
+/* spread-stage 淡出（不硬切） */
+.spread-stage.fading {
+  pointer-events: none;
+  animation: stageFade 0.25s ease forwards;
+}
+@keyframes stageFade {
+  to { opacity: 0; }
+}
+
+/* flip-stage 淡入 */
+.flip-stage-enter {
+  animation: stageFadeIn 0.3s ease both;
+}
+@keyframes stageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* 卡牌從頂部落下 */
+.flip-wrap.reveal-drop {
+  animation: cardRevealDrop 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes cardRevealDrop {
+  0%   { transform: translateY(-65px) scale(0.78); opacity: 0;
+         filter: brightness(1.8) drop-shadow(0 0 32px rgba(255,255,255,0.6)); }
+  55%  { transform: translateY(5px) scale(1.02); opacity: 1;
+         filter: brightness(1.05); }
+  100% { transform: translateY(0) scale(1); opacity: 1; filter: none; }
+}
+
+/* 頂部彩線 */
+.spread-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+.spread-stage[data-cat="ice"]   .spread-card::after { background: linear-gradient(90deg, transparent, var(--ice), transparent); }
+.spread-stage[data-cat="star1"] .spread-card::after { background: linear-gradient(90deg, transparent, var(--s1), transparent); }
+.spread-stage[data-cat="star2"] .spread-card::after { background: linear-gradient(90deg, transparent, var(--s2), transparent); }
+.spread-stage[data-cat="star3"] .spread-card::after { background: linear-gradient(90deg, transparent, var(--s3), transparent); }
+
+/* spread-card SVG 由 JS inline style 控制 */
+
+/* 入場動畫：一張張飄入（delay 由 JS 控制） */
+.spread-card { animation: dealIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes dealIn {
+  from { opacity: 0; transform: translateY(60px) rotate(var(--r, 0deg)) scale(0.8); }
+  to   { opacity: 1; }
+}
+
+/* 入場：從下方滑入（首次出現用） */
+.flip-wrap {
+  perspective: 1200px;
+  width: min(280px, 80vw);
+  height: min(460px, 58vh);
+  animation: cardDeal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* 從 spread 過來時不播入場動畫 */
+.flip-wrap.no-intro {
+  animation: none;
+}
+
+@keyframes cardDeal {
+  from { opacity: 0; transform: translateY(40px) rotate(-2deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+
+/* 點擊時：先上浮 */
+.flip-wrap.lifting {
+  animation: cardLift 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes cardLift {
+  0%   { transform: translateY(0) scale(1); filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12)); }
+  100% { transform: translateY(-18px) scale(1.03); filter: drop-shadow(0 24px 40px rgba(0,0,0,0.2)); }
+}
+
+.flip-inner {
+  width: 100%; height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flip-inner.flipped { transform: rotateY(180deg); }
+
+/* 翻牌時整張卡先輕微向上（手動翻牌用） */
+.flip-wrap.lifting {
+  animation: cardLift 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 28px;
+}
+
+/* ── CARD FRONT (照片背景) ── */
+.flip-front {
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 照片背景 per category */
+.flip-wrap[data-cat="ice"]   .flip-front { background-image: url('max-komthongvijit-gpqpneeE86E-unsplash.jpg'); }
+.flip-wrap[data-cat="star1"] .flip-front { background-image: url('aaron-burden-t8MgrNitecE-unsplash.jpg'); }
+.flip-wrap[data-cat="star2"] .flip-front { background-image: url('pawel-czerwinski-beBBYVJ_4MM-unsplash.jpg'); }
+.flip-wrap[data-cat="star3"] .flip-front { background-image: url('alex-QuPbnSMgu4c-unsplash.jpg'); }
+
+/* 暗化漸層 — 讓 SVG 花紋和文字保持可讀性 */
+.flip-front::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(175deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.62) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 幾何花紋 SVG 疊加在照片上 */
+.flip-front .card-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  z-index: 2;
+}
+
+/* 前景內容 */
+.flip-front .front-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.flip-front .front-gem {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(4px);
+}
+.flip-wrap[data-cat="ice"]   .flip-front .front-gem { border-color: rgba(107,174,214,0.5); }
+.flip-wrap[data-cat="star1"] .flip-front .front-gem { border-color: rgba(116,176,122,0.5); }
+.flip-wrap[data-cat="star2"] .flip-front .front-gem { border-color: rgba(201,168,76,0.5); }
+.flip-wrap[data-cat="star3"] .flip-front .front-gem { border-color: rgba(196,96,96,0.5); }
+
+.flip-front .front-cat {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.flip-wrap[data-cat="ice"]   .flip-front .front-cat { color: rgba(107,174,214,0.9); }
+.flip-wrap[data-cat="star1"] .flip-front .front-cat { color: rgba(116,176,122,0.9); }
+.flip-wrap[data-cat="star2"] .flip-front .front-cat { color: rgba(201,168,76,0.9); }
+.flip-wrap[data-cat="star3"] .flip-front .front-cat { color: rgba(196,96,96,0.9); }
+
+.flip-front .front-tap {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+  margin-top: 8px;
+  animation: blink 2.5s ease infinite;
+}
+@keyframes blink { 0%,100%{opacity:0.25} 50%{opacity:0.7} }
+
+/* 頂部彩色線條 */
+.flip-front::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  z-index: 4;
+}
+.flip-wrap[data-cat="ice"]   .flip-front::after { background: linear-gradient(90deg, transparent, var(--ice), transparent); }
+.flip-wrap[data-cat="star1"] .flip-front::after { background: linear-gradient(90deg, transparent, var(--s1), transparent); }
+.flip-wrap[data-cat="star2"] .flip-front::after { background: linear-gradient(90deg, transparent, var(--s2), transparent); }
+.flip-wrap[data-cat="star3"] .flip-front::after { background: linear-gradient(90deg, transparent, var(--s3), transparent); }
+
+/* ── CARD BACK (題目) ── */
+.flip-back {
+  transform: rotateY(180deg);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  text-align: center;
+  justify-content: center;
+  gap: 0;
+}
+.flip-wrap[data-cat="ice"]   .flip-back { background: var(--ice-bg); }
+.flip-wrap[data-cat="star1"] .flip-back { background: var(--s1-bg); }
+.flip-wrap[data-cat="star2"] .flip-back { background: var(--s2-bg); }
+.flip-wrap[data-cat="star3"] .flip-back { background: var(--s3-bg); }
+
+.flip-back::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.flip-wrap[data-cat="ice"]   .flip-back::after { background: linear-gradient(90deg, transparent, var(--ice), transparent); }
+.flip-wrap[data-cat="star1"] .flip-back::after { background: linear-gradient(90deg, transparent, var(--s1), transparent); }
+.flip-wrap[data-cat="star2"] .flip-back::after { background: linear-gradient(90deg, transparent, var(--s2), transparent); }
+.flip-wrap[data-cat="star3"] .flip-back::after { background: linear-gradient(90deg, transparent, var(--s3), transparent); }
+
+/* 題目文字逐行浮現 */
+.flip-back .question {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(16px, 4.2vw, 21px);
+  line-height: 2;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s;
+}
+.flip-inner.flipped .flip-back .question {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.flip-wrap[data-cat="ice"]   .flip-back .question { color: #1B4F72; }
+.flip-wrap[data-cat="star1"] .flip-back .question { color: #1A4731; }
+.flip-wrap[data-cat="star2"] .flip-back .question { color: #5D4000; }
+.flip-wrap[data-cat="star3"] .flip-back .question { color: #5C1010; }
+
+/* Card bottom actions */
+.card-actions {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 320px;
+  animation: fadeIn 0.4s ease both;
+}
+.card-actions.show { display: flex; }
+
+.card-btns {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.card-btns .btn-secondary {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  padding: 12px 16px;
+}
+.card-btns .btn-primary {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  padding: 12px 16px;
+}
+
+.card-tip {
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ── CAT COMPLETE ── */
+#cat-complete {
+  justify-content: center;
+  padding: 48px 32px;
+  text-align: center;
+  gap: 20px;
+  background: var(--white);
+}
+
+.complete-badge {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 8px;
+}
+#cat-complete[data-cat="ice"]   .complete-badge { background: var(--ice-bg); }
+#cat-complete[data-cat="star1"] .complete-badge { background: var(--s1-bg); }
+#cat-complete[data-cat="star2"] .complete-badge { background: var(--s2-bg); }
+#cat-complete[data-cat="star3"] .complete-badge { background: var(--s3-bg); }
+
+.complete-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.complete-cat-name {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  padding: 4px 14px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+#cat-complete[data-cat="ice"]   .complete-cat-name { background: var(--ice-bg); color: var(--ice); }
+#cat-complete[data-cat="star1"] .complete-cat-name { background: var(--s1-bg); color: var(--s1); }
+#cat-complete[data-cat="star2"] .complete-cat-name { background: var(--s2-bg); color: var(--s2); }
+#cat-complete[data-cat="star3"] .complete-cat-name { background: var(--s3-bg); color: var(--s3); }
+
+.complete-desc {
+  font-size: 14px;
+  color: var(--ink-light);
+  line-height: 2;
+  font-weight: 300;
+  max-width: 300px;
+  margin: 0 auto 28px;
+  white-space: pre-line;
+}
+
+.complete-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--ink-faint);
+  margin: 4px auto 24px;
+}
+
+.complete-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* ── END ── */
+#end-screen {
+  justify-content: center;
+  padding: 48px 32px;
+  text-align: center;
+  gap: 24px;
+  background: var(--white);
+}
+
+.end-emoji { font-size: 48px; margin-bottom: 8px; }
+.end-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.end-sub {
+  font-size: 14px;
+  color: var(--ink-light);
+  font-weight: 300;
+  line-height: 2;
+  max-width: 300px;
+}
+.end-stats {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  padding: 24px 0;
+  border-top: 1px solid var(--off-white);
+  border-bottom: 1px solid var(--off-white);
+  width: 100%;
+  max-width: 360px;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 1px;
+}
+
+/* ── PLAYERS SETUP ── */
+#players-setup {
+  justify-content: center;
+  padding: 56px 32px 48px;
+  gap: 0;
+  background: var(--white);
+}
+.players-header { text-align: center; margin-bottom: 40px; }
+.players-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 400; margin-bottom: 8px;
+}
+.players-sub {
+  font-size: 13px; color: var(--ink-light); font-weight: 300;
+  line-height: 1.8; max-width: 280px; margin: 0 auto;
+}
+.players-input-row {
+  display: flex; gap: 10px;
+  width: 100%; max-width: 360px; margin-bottom: 20px;
+}
+.players-input {
+  flex: 1;
+  border: 1.5px solid var(--ink-faint); border-radius: 100px;
+  padding: 12px 20px;
+  font-family: 'LINE Seed JP', sans-serif; font-size: 14px;
+  color: var(--ink); background: var(--off-white);
+  outline: none; transition: border-color 0.2s;
+}
+.players-input:focus { border-color: var(--ink-light); }
+.players-input::placeholder { color: var(--ink-faint); }
+.players-add {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--ink); color: var(--white); border: none;
+  font-size: 22px; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.players-add:hover { background: #333; }
+.players-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  width: 100%; max-width: 360px; min-height: 40px;
+  margin-bottom: 16px; justify-content: center;
+}
+.player-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--off-white); border: 1.5px solid var(--ink-faint);
+  padding: 6px 10px 6px 16px; border-radius: 100px;
+  font-size: 13px; color: var(--ink);
+  animation: fadeIn 0.25s ease both;
+}
+.player-chip-remove {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--ink-faint); border: none; cursor: pointer;
+  font-size: 11px; color: var(--white); line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s; padding: 0;
+}
+.player-chip-remove:hover { background: var(--ink-light); }
+.players-count-hint {
+  font-size: 12px; color: var(--ink-faint);
+  letter-spacing: 0.5px; text-align: center;
+  min-height: 18px; margin-bottom: 28px;
+}
+.players-btns {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; width: 100%; max-width: 280px;
+}
+
+/* ── HOW TO PLAY BUTTON ── */
+.how-to-play-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: 1.5px solid var(--ink-faint);
+  border-radius: 100px; padding: 7px 16px;
+  font-family: 'LINE Seed JP', sans-serif;
+  font-size: 12px; color: var(--ink-light);
+  cursor: pointer; letter-spacing: 0.5px;
+  transition: border-color 0.2s, color 0.2s;
+  margin-top: 4px;
+}
+.how-to-play-btn:hover { border-color: var(--ink-light); color: var(--ink); }
+.how-to-play-btn svg { flex-shrink: 0; }
+
+/* ── TUTORIAL OVERLAY ── */
+#tutorial-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,23,20,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 200;
+  display: none; align-items: flex-end; justify-content: center;
+  opacity: 0; transition: opacity 0.3s ease;
+}
+#tutorial-overlay.show {
+  display: flex;
+  animation: tutOverlayIn 0.3s ease forwards;
+}
+@keyframes tutOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.tutorial-sheet {
+  width: 100%; max-width: 480px;
+  background: #FDFCFA;
+  border-radius: 24px 24px 0 0;
+  padding: 0 0 env(safe-area-inset-bottom,16px);
+  transform: translateY(100%);
+  animation: sheetUp 0.38s cubic-bezier(.32,1.2,.52,1) forwards;
+  position: relative;
+  overflow: hidden;
+}
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+.tutorial-handle {
+  width: 36px; height: 4px;
+  background: var(--ink-faint); border-radius: 2px;
+  margin: 14px auto 0;
+}
+.tutorial-close {
+  position: absolute; top: 14px; right: 18px;
+  background: none; border: none;
+  color: var(--ink-faint); font-size: 20px;
+  cursor: pointer; line-height: 1; padding: 4px;
+  transition: color 0.2s;
+}
+.tutorial-close:hover { color: var(--ink); }
+
+/* progress bar */
+.tutorial-progress {
+  display: flex; gap: 5px;
+  justify-content: center; padding: 18px 24px 0;
+}
+.tutorial-dot {
+  height: 3px; border-radius: 2px;
+  background: var(--ink-faint);
+  flex: 1; max-width: 40px;
+  transition: background 0.3s, transform 0.3s;
+}
+.tutorial-dot.active { background: var(--ink); transform: scaleY(1.5); }
+
+/* step body */
+.tutorial-body {
+  padding: 28px 28px 8px;
+  min-height: 280px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.tutorial-step {
+  display: none; flex-direction: column; gap: 0;
+  animation: tutStepIn 0.32s ease both;
+}
+.tutorial-step.active { display: flex; }
+@keyframes tutStepIn {
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.tutorial-step-num {
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--ink-faint); margin-bottom: 10px;
+  font-family: 'Cormorant Garamond', serif;
+}
+.tutorial-step-icon {
+  font-size: 30px; margin-bottom: 12px; line-height: 1;
+}
+.tutorial-step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px; font-weight: 400;
+  color: var(--ink); margin-bottom: 12px;
+  line-height: 1.35;
+}
+.tutorial-step-desc {
+  font-size: 13.5px; color: var(--ink-light);
+  line-height: 1.9; margin-bottom: 20px;
+}
+.tutorial-open-q {
+  background: var(--off-white);
+  border-left: 2.5px solid var(--ink-faint);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 16px;
+  font-size: 13px; color: var(--ink);
+  line-height: 1.75; font-style: italic;
+}
+.tutorial-open-q::before {
+  content: '想一想 ·';
+  display: block; font-size: 10px; letter-spacing: 1.5px;
+  color: var(--ink-faint); margin-bottom: 5px;
+  font-style: normal;
+}
+
+/* nav */
+.tutorial-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 28px 24px;
+}
+.tut-prev, .tut-next {
+  display: flex; align-items: center; gap: 6px;
+  background: none; border: 1.5px solid var(--ink-faint);
+  border-radius: 100px; padding: 9px 20px;
+  font-size: 13px; color: var(--ink-light);
+  cursor: pointer; font-family: 'LINE Seed JP', sans-serif;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.tut-prev:hover, .tut-next:hover {
+  border-color: var(--ink); color: var(--ink);
+}
+.tut-next.primary {
+  background: var(--ink); color: var(--white);
+  border-color: var(--ink);
+}
+.tut-next.primary:hover { background: #333; border-color: #333; }
+.tut-prev:disabled { opacity: 0; pointer-events: none; }
+
+/* ── TURN OVERLAY ── */
+#turn-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,23,20,0.88);
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 100; cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+#turn-overlay.show {
+  display: flex;
+  animation: fadeIn 0.3s ease both;
+}
+.turn-card {
+  background: var(--white); border-radius: 20px;
+  padding: 40px 48px; text-align: center;
+  max-width: 280px; width: 90%;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+}
+.turn-label {
+  font-size: 11px; color: var(--ink-faint);
+  letter-spacing: 2px; margin-bottom: 12px;
+}
+.turn-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 400; color: var(--ink);
+}
+.turn-tap {
+  font-size: 12px; color: var(--ink-faint);
+  margin-top: 24px; letter-spacing: 1px;
+  animation: blink2 2s ease infinite;
+}
+
+/* ── PLAYER INDICATOR ── */
+.player-indicator {
+  font-size: 13px; color: var(--ink-light);
+  letter-spacing: 0.5px; padding: 0 24px 8px;
+  width: 100%; text-align: center; display: none;
+}
+.player-indicator.show { display: block; }
+.player-indicator strong { color: var(--ink); font-weight: 500; }
+
+/* 翻牌退場 */
+.flip-wrap.exit-down {
+  animation: cardExitDown 0.32s cubic-bezier(0.4, 0, 1, 1) forwards !important;
+  pointer-events: none;
+}
+@keyframes cardExitDown {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(60px) scale(0.88); opacity: 0; }
+}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(196,191,187,0.4);
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 50;
+  padding: 0 8px;
+}
+.bottom-nav.show { display: flex; }
+.nav-btn {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 3px;
+  padding: 8px 20px; cursor: pointer;
+  border-radius: 10px; border: none;
+  background: none;
+  font-family: 'LINE Seed JP', sans-serif;
+  color: var(--ink-faint);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-btn:hover { background: var(--off-white); color: var(--ink-light); }
+.nav-btn.active { color: var(--ink); }
+.nav-icon { font-size: 17px; line-height: 1; }
+.nav-label { font-size: 9px; letter-spacing: 0.5px; }
+
+/* ── FAB ── */
+.fab {
+  position: fixed;
+  bottom: 76px; right: 20px;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  border: none; font-size: 17px;
+  cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+  z-index: 51;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.fab.show { display: flex; }
+.fab:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.28); }
+
+/* ── BOTTOM SHEET MODAL ── */
+.sheet-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,23,20,0.45);
+  display: none; align-items: flex-end; justify-content: center;
+  z-index: 200; backdrop-filter: blur(3px);
+}
+.sheet-overlay.show { display: flex; animation: fadeIn 0.2s ease both; }
+.sheet {
+  background: var(--white);
+  border-radius: 20px 20px 0 0;
+  padding: 28px 28px 48px;
+  width: 100%; max-width: 520px;
+  animation: slideUp 0.32s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+.sheet-handle {
+  width: 36px; height: 4px;
+  background: var(--ink-faint); border-radius: 2px;
+  margin: 0 auto 24px;
+}
+.sheet-title {
+  font-size: 16px; font-weight: 700;
+  margin-bottom: 6px;
+}
+.sheet-sub {
+  font-size: 12px; color: var(--ink-light);
+  font-weight: 400; margin-bottom: 20px; line-height: 1.6;
+}
+.sheet-textarea {
+  width: 100%; min-height: 100px;
+  border: 1.5px solid var(--ink-faint);
+  border-radius: 12px; padding: 14px 16px;
+  font-family: 'LINE Seed JP', sans-serif;
+  font-size: 14px; color: var(--ink);
+  background: var(--off-white);
+  resize: vertical; outline: none;
+  transition: border-color 0.2s; margin-bottom: 16px;
+  line-height: 1.8;
+}
+.sheet-textarea:focus { border-color: var(--ink-light); }
+.sheet-row {
+  display: flex; gap: 10px; align-items: center;
+}
+.sheet-close {
+  background: none; border: none; cursor: pointer;
+  font-size: 20px; color: var(--ink-faint);
+  padding: 4px; line-height: 1;
+  transition: color 0.2s;
+}
+.sheet-close:hover { color: var(--ink); }
+
+/* ── PLAYER MGMT SHEET ── */
+.mgmt-list {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 20px; max-height: 200px; overflow-y: auto;
+}
+.mgmt-player {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--off-white); border-radius: 10px;
+  animation: fadeIn 0.2s ease both;
+}
+.mgmt-player.current {
+  background: var(--ink); color: var(--white);
+}
+.mgmt-player.current .player-chip-remove {
+  background: rgba(255,255,255,0.3);
+}
+.mgmt-name { font-size: 14px; display: flex; align-items: center; gap: 6px; }
+.mgmt-current-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--white); flex-shrink: 0;
+}
+.mgmt-input-row {
+  display: flex; gap: 8px; margin-top: 4px;
+}
+.mgmt-input {
+  flex: 1;
+  border: 1.5px solid var(--ink-faint); border-radius: 100px;
+  padding: 10px 16px;
+  font-family: 'LINE Seed JP', sans-serif; font-size: 13px;
+  color: var(--ink); background: var(--off-white);
+  outline: none; transition: border-color 0.2s;
+}
+.mgmt-input:focus { border-color: var(--ink-light); }
+
+/* ── SCREENS + NAV BAR PADDING ── */
+#cat-complete, #end-screen { padding-bottom: 80px; }
+#card-view .card-stage { padding-bottom: 80px; }
+
+/* ── Responsive ── */
+@media (max-width: 380px) {
+  .welcome-title { font-size: 32px; letter-spacing: 4px; }
+  .flip-wrap { height: min(400px, 52vh); }
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .cat-list {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 560px;
+  }
+  .cat-item { aspect-ratio: 1 / 3; }
+  .flip-wrap {
+    width: min(300px, 80vw);
+    height: min(500px, 65vh);
+  }
+  .bottom-nav, .sheet { max-width: 600px; left: 50%; right: auto;
+    transform: translateX(-50%); border-radius: 20px 20px 0 0; }
+  .bottom-nav { width: 100%; }
+  .fab { right: calc(50% - 280px); }
+}
+
+/* Desktop */
+@media (min-width: 960px) {
+  .screen { max-width: 680px; margin: 0 auto; }
+  #card-view { max-width: 100%; }
+  #card-view .card-stage, #card-view .spread-stage { max-width: 680px; margin: 0 auto; }
+  .cat-list { max-width: 680px; }
+  .welcome-title { font-size: clamp(48px, 6vw, 72px); letter-spacing: 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- WELCOME -->
+<div class="screen active" id="welcome">
+  <div class="welcome-chip"><span>✦</span> 2–8 人</div>
+  <h1 class="welcome-title">說說你<br><em>Tell Me More</em></h1>
+  
+  <p class="welcome-desc">透過循序漸進的提問，引導彼此探索內心世界，建立真實而有意義的連結。</p>
+  <button class="btn-primary" onclick="goSpeech()">開始遊戲</button>
+  <div class="welcome-people">
+    <div class="dot"></div>
+    <span>單機試玩版</span>
+    <div class="dot"></div>
+    <span>多人版即將上線</span>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- SPEECH -->
+<div class="screen" id="speech">
+  <button class="speech-skip" onclick="goPlayersSetup()">略過 →</button>
+  <div class="speech-progress" id="speech-dots"></div>
+  <div class="speech-body" id="speech-body"></div>
+</div>
+
+<!-- PLAYERS SETUP -->
+<div class="screen" id="players-setup">
+  <div class="players-header">
+    <h2 class="players-title">誰在一起玩？</h2>
+    <p class="players-sub">輸入每個人的名字，遊戲會追蹤輪到誰</p>
+  </div>
+  <div class="players-input-row">
+    <input class="players-input" id="player-input" type="text"
+      placeholder="輸入名字" maxlength="10"
+      onkeydown="if(event.key==='Enter')addPlayer()">
+    <button class="players-add" onclick="addPlayer()">+</button>
+  </div>
+  <div class="players-chips" id="players-chips"></div>
+  <div class="players-count-hint" id="players-count-hint"></div>
+  <div class="players-btns">
+    <button class="btn-primary" id="players-start-btn"
+      onclick="startWithPlayers()"
+      style="opacity:0.4;pointer-events:none">開始遊戲</button>
+    <button class="btn-text" onclick="skipPlayers()">單人模式，跳過</button>
+    <button class="how-to-play-btn" onclick="openTutorial()">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+        <circle cx="6.5" cy="6.5" r="5.75" stroke="currentColor" stroke-width="1.2"/>
+        <text x="6.5" y="10" text-anchor="middle" font-size="8" fill="currentColor" font-family="Georgia,serif">?</text>
+      </svg>
+      怎麼玩？
+    </button>
+  </div>
+</div>
+
+<!-- TUTORIAL OVERLAY -->
+<div id="tutorial-overlay" onclick="closeTutorialOnBg(event)">
+  <div class="tutorial-sheet" id="tutorial-sheet">
+    <div class="tutorial-handle"></div>
+    <button class="tutorial-close" onclick="closeTutorial()">✕</button>
+
+    <!-- step dots -->
+    <div class="tutorial-progress" id="tut-progress"></div>
+
+    <!-- steps -->
+    <div class="tutorial-body" id="tut-body">
+
+      <!-- Step 1 -->
+      <div class="tutorial-step active" data-step="0">
+        <div class="tutorial-step-num">STEP 01 / 05</div>
+        <div class="tutorial-step-icon">🃏</div>
+        <div class="tutorial-step-title">選一個你今天想走的深度</div>
+        <div class="tutorial-step-desc">
+          四個類別代表四種對話溫度，從「先暖個身」的輕鬆問題，到「真的很深」的靈魂拷問。你不需要按順序，也不需要全部玩完。
+        </div>
+        <div class="tutorial-open-q">如果你只能問對方一個問題，你會問什麼？</div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="tutorial-step" data-step="1">
+        <div class="tutorial-step-num">STEP 02 / 05</div>
+        <div class="tutorial-step-icon">✦</div>
+        <div class="tutorial-step-title">翻開，然後說出來</div>
+        <div class="tutorial-step-desc">
+          點擊卡牌，問題會翻出來。可以由一個人回答，也可以所有人輪流說。沒有對錯，沒有評分，只有在場的你們。
+        </div>
+        <div class="tutorial-open-q">有沒有一個答案，你其實早就知道，但從來沒說出口過？</div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="tutorial-step" data-step="2">
+        <div class="tutorial-step-num">STEP 03 / 05</div>
+        <div class="tutorial-step-icon">◎</div>
+        <div class="tutorial-step-title">聽，比說更難</div>
+        <div class="tutorial-step-desc">
+          當別人在說話時，試著不要想自己的回答。只是聽。你會在別人的話裡發現，你也曾有過同樣的感受。
+        </div>
+        <div class="tutorial-open-q">上一次你真的「被聽見」是什麼時候？那是什麼感覺？</div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="tutorial-step" data-step="3">
+        <div class="tutorial-step-num">STEP 04 / 05</div>
+        <div class="tutorial-step-icon">⚙️</div>
+        <div class="tutorial-step-title">設計你自己的規則</div>
+        <div class="tutorial-step-desc">
+          你可以加計時器、設挑戰、要求說一個秘密、或是跳過覺得太難的題目。你也可以只用一個類別玩整晚。這個工具是你的。
+        </div>
+        <div class="tutorial-open-q">如果把這個遊戲帶去你最常出現的場合，你會怎麼改造它？</div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="tutorial-step" data-step="4">
+        <div class="tutorial-step-num">STEP 05 / 05</div>
+        <div class="tutorial-step-icon">∞</div>
+        <div class="tutorial-step-title">沒有終點的遊戲</div>
+        <div class="tutorial-step-desc">
+          認識一個人，本來就沒有終點。不需要「玩完」所有的牌。帶走今天讓你印象最深的一句話，就夠了。
+        </div>
+        <div class="tutorial-open-q">今天之後，有什麼你還想繼續聊的話題？</div>
+      </div>
+
+    </div><!-- /tutorial-body -->
+
+    <!-- navigation -->
+    <div class="tutorial-nav">
+      <button class="tut-prev" id="tut-prev" onclick="tutNav(-1)" disabled>← 上一步</button>
+      <button class="tut-next primary" id="tut-next" onclick="tutNav(1)">下一步 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SELECT -->
+<div class="screen" id="select">
+  <div class="select-header">
+    <h2 class="select-title">想聊多深？</h2>
+    <p class="select-sub">選一個類型，開始抽牌</p>
+  </div>
+
+  <div class="cat-list">
+
+    <!-- ❄️ 先暖個身 — 海軍藍 × 冰雪星形 -->
+    <div class="cat-item" data-cat="ice" onclick="startDraw('ice')" style="animation-delay:.05s">
+      <svg class="cat-bg" viewBox="0 0 200 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="gi" cx="50%" cy="45%" r="42%">
+            <stop offset="0%" stop-color="#1E3D6A" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#0C1C35" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- 底色（半透明，讓照片透出） -->
+        <rect width="200" height="520" fill="#0C1C35" fill-opacity="0.72"/>
+        <rect width="200" height="520" fill="url(#gi)"/>
+        <!-- 外框 -->
+        <rect x="9" y="9" width="182" height="502" fill="none" stroke="#C4A860" stroke-width="1.2"/>
+        <!-- 內框 -->
+        <rect x="15" y="15" width="170" height="490" fill="none" stroke="#C4A860" stroke-width="0.45" opacity="0.5"/>
+        <!-- 四角裝飾括號 -->
+        <polyline points="9,32 9,9 32,9" fill="none" stroke="#C4A860" stroke-width="2.2" stroke-linecap="round"/>
+        <polyline points="168,9 191,9 191,32" fill="none" stroke="#C4A860" stroke-width="2.2" stroke-linecap="round"/>
+        <polyline points="9,488 9,511 32,511" fill="none" stroke="#C4A860" stroke-width="2.2" stroke-linecap="round"/>
+        <polyline points="168,511 191,511 191,488" fill="none" stroke="#C4A860" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- 羅馬數字 -->
+        <text x="100" y="42" text-anchor="middle" font-size="11" fill="#C4A860" font-family="Georgia,serif" letter-spacing="3" opacity="0.8">I</text>
+        <!-- 頂部分隔線 + 菱形 -->
+        <line x1="28" y1="53" x2="88" y2="53" stroke="#C4A860" stroke-width="0.5" opacity="0.45"/>
+        <polygon points="100,49.5 104,53 100,56.5 96,53" fill="#C4A860" opacity="0.7"/>
+        <line x1="112" y1="53" x2="172" y2="53" stroke="#C4A860" stroke-width="0.5" opacity="0.45"/>
+        <!-- 中央圓框 -->
+        <circle cx="100" cy="220" r="66" fill="none" stroke="#C4A860" stroke-width="0.8" opacity="0.3"/>
+        <!-- 雪花 6 臂 (每臂 60°) -->
+        <line x1="100" y1="160" x2="100" y2="280" stroke="#6BAAD4" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+        <line x1="43" y1="187" x2="157" y2="253" stroke="#6BAAD4" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+        <line x1="43" y1="253" x2="157" y2="187" stroke="#6BAAD4" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+        <!-- 雪花小刺 (垂直臂) -->
+        <line x1="100" y1="190" x2="91" y2="198" stroke="#6BAAD4" stroke-width="1" stroke-linecap="round" opacity="0.55"/>
+        <line x1="100" y1="190" x2="109" y2="198" stroke="#6BAAD4" stroke-width="1" stroke-linecap="round" opacity="0.55"/>
+        <line x1="100" y1="250" x2="91" y2="242" stroke="#6BAAD4" stroke-width="1" stroke-linecap="round" opacity="0.55"/>
+        <line x1="100" y1="250" x2="109" y2="242" stroke="#6BAAD4" stroke-width="1" stroke-linecap="round" opacity="0.55"/>
+        <!-- 雪花臂端小圓點 -->
+        <circle cx="100" cy="161" r="2" fill="#6BAAD4" opacity="0.6"/>
+        <circle cx="100" cy="279" r="2" fill="#6BAAD4" opacity="0.6"/>
+        <circle cx="43" cy="187" r="2" fill="#6BAAD4" opacity="0.6"/>
+        <circle cx="157" cy="253" r="2" fill="#6BAAD4" opacity="0.6"/>
+        <circle cx="43" cy="253" r="2" fill="#6BAAD4" opacity="0.6"/>
+        <circle cx="157" cy="187" r="2" fill="#6BAAD4" opacity="0.6"/>
+        <!-- 中心 -->
+        <circle cx="100" cy="220" r="5.5" fill="none" stroke="#6BAAD4" stroke-width="1" opacity="0.5"/>
+        <circle cx="100" cy="220" r="2.5" fill="#C4A860"/>
+        <!-- 底部分隔線 -->
+        <line x1="28" y1="328" x2="88" y2="328" stroke="#C4A860" stroke-width="0.5" opacity="0.45"/>
+        <polygon points="100,324.5 104,328 100,331.5 96,328" fill="#C4A860" opacity="0.7"/>
+        <line x1="112" y1="328" x2="172" y2="328" stroke="#C4A860" stroke-width="0.5" opacity="0.45"/>
+        <!-- 類別名稱 -->
+        <text x="100" y="375" text-anchor="middle" font-size="14" fill="#C4A860" font-family="'Noto Sans TC',sans-serif" letter-spacing="4">先暖個身</text>
+        <text x="100" y="396" text-anchor="middle" font-size="7.5" fill="#C4A860" font-family="'Noto Sans TC',sans-serif" letter-spacing="0.8" opacity="0.55">輕鬆有趣，任何人都能聊</text>
+        <line x1="52" y1="410" x2="148" y2="410" stroke="#C4A860" stroke-width="0.4" opacity="0.35"/>
+      </svg>
+      <div class="cat-prog"><div class="cat-prog-fill" id="bar-ice" style="width:0%"></div></div>
+      <div class="cat-count" id="count-ice">0 / 10</div>
+    </div>
+
+    <!-- 🌿 開始走心 — 深林綠 × 六瓣花 -->
+    <div class="cat-item" data-cat="star1" onclick="startDraw('star1')" style="animation-delay:.1s">
+      <svg class="cat-bg" viewBox="0 0 200 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="gs1" cx="50%" cy="45%" r="42%">
+            <stop offset="0%" stop-color="#1A4028" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#0B1E12" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="200" height="520" fill="#0B1E12" fill-opacity="0.72"/>
+        <rect width="200" height="520" fill="url(#gs1)"/>
+        <!-- 外框 -->
+        <rect x="9" y="9" width="182" height="502" fill="none" stroke="#A8C060" stroke-width="1.2"/>
+        <!-- 內框 + 小刻度 -->
+        <rect x="15" y="15" width="170" height="490" fill="none" stroke="#A8C060" stroke-width="0.45" opacity="0.45"/>
+        <!-- 四角 (略加長的 L) -->
+        <polyline points="9,35 9,9 35,9" fill="none" stroke="#A8C060" stroke-width="2.2" stroke-linecap="round"/>
+        <polyline points="165,9 191,9 191,35" fill="none" stroke="#A8C060" stroke-width="2.2" stroke-linecap="round"/>
+        <polyline points="9,485 9,511 35,511" fill="none" stroke="#A8C060" stroke-width="2.2" stroke-linecap="round"/>
+        <polyline points="165,511 191,511 191,485" fill="none" stroke="#A8C060" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- 四角點綴小菱形 -->
+        <polygon points="9,9 13,13 9,17 5,13" fill="#A8C060" opacity="0.5"/>
+        <polygon points="191,9 195,13 191,17 187,13" fill="#A8C060" opacity="0.5"/>
+        <!-- 羅馬數字 -->
+        <text x="100" y="42" text-anchor="middle" font-size="11" fill="#A8C060" font-family="Georgia,serif" letter-spacing="2" opacity="0.8">II</text>
+        <!-- 頂部分隔 -->
+        <line x1="28" y1="53" x2="88" y2="53" stroke="#A8C060" stroke-width="0.5" opacity="0.45"/>
+        <polygon points="100,49.5 104,53 100,56.5 96,53" fill="#A8C060" opacity="0.65"/>
+        <line x1="112" y1="53" x2="172" y2="53" stroke="#A8C060" stroke-width="0.5" opacity="0.45"/>
+        <!-- 中央圓框 (雙圓) -->
+        <circle cx="100" cy="218" r="66" fill="none" stroke="#A8C060" stroke-width="0.7" opacity="0.28"/>
+        <circle cx="100" cy="218" r="54" fill="none" stroke="#A8C060" stroke-width="0.35" opacity="0.2"/>
+        <!-- 六瓣花 — 6 橢圓繞中心旋轉 -->
+        <!-- 花瓣用路徑：r=28 的橢圓，長軸從中心延伸到 r+18=46 -->
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="#70B890" opacity="0.55"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="none" stroke="#A8C060" stroke-width="0.5" opacity="0.4" transform="rotate(0 100 218)"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="#70B890" opacity="0.55" transform="rotate(60 100 218)"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="#70B890" opacity="0.55" transform="rotate(120 100 218)"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="#70B890" opacity="0.55" transform="rotate(180 100 218)"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="#70B890" opacity="0.55" transform="rotate(240 100 218)"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="#70B890" opacity="0.55" transform="rotate(300 100 218)"/>
+        <!-- 花瓣邊線 -->
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="none" stroke="#A8C060" stroke-width="0.5" opacity="0.4"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="none" stroke="#A8C060" stroke-width="0.5" opacity="0.4" transform="rotate(60 100 218)"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="none" stroke="#A8C060" stroke-width="0.5" opacity="0.4" transform="rotate(120 100 218)"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="none" stroke="#A8C060" stroke-width="0.5" opacity="0.4" transform="rotate(180 100 218)"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="none" stroke="#A8C060" stroke-width="0.5" opacity="0.4" transform="rotate(240 100 218)"/>
+        <ellipse cx="100" cy="184" rx="11" ry="24" fill="none" stroke="#A8C060" stroke-width="0.5" opacity="0.4" transform="rotate(300 100 218)"/>
+        <!-- 中心圓 -->
+        <circle cx="100" cy="218" r="10" fill="#0B1E12" stroke="#A8C060" stroke-width="0.8" opacity="0.8"/>
+        <circle cx="100" cy="218" r="4" fill="#70B890" opacity="0.7"/>
+        <circle cx="100" cy="218" r="1.8" fill="#A8C060"/>
+        <!-- 底部分隔 -->
+        <line x1="28" y1="326" x2="88" y2="326" stroke="#A8C060" stroke-width="0.5" opacity="0.45"/>
+        <polygon points="100,322.5 104,326 100,329.5 96,326" fill="#A8C060" opacity="0.65"/>
+        <line x1="112" y1="326" x2="172" y2="326" stroke="#A8C060" stroke-width="0.5" opacity="0.45"/>
+        <text x="100" y="374" text-anchor="middle" font-size="14" fill="#A8C060" font-family="'Noto Sans TC',sans-serif" letter-spacing="4">開始走心</text>
+        <text x="100" y="395" text-anchor="middle" font-size="7.5" fill="#A8C060" font-family="'Noto Sans TC',sans-serif" letter-spacing="0.8" opacity="0.55">聊聊自己，開始有點真實</text>
+        <line x1="52" y1="409" x2="148" y2="409" stroke="#A8C060" stroke-width="0.4" opacity="0.35"/>
+      </svg>
+      <div class="cat-prog"><div class="cat-prog-fill" id="bar-star1" style="width:0%"></div></div>
+      <div class="cat-count" id="count-star1">0 / 10</div>
+    </div>
+
+    <!-- 🔺 有點深了 — 深褐 × 三角全知之眼 -->
+    <div class="cat-item" data-cat="star2" onclick="startDraw('star2')" style="animation-delay:.15s">
+      <svg class="cat-bg" viewBox="0 0 200 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="gs2" cx="50%" cy="48%" r="40%">
+            <stop offset="0%" stop-color="#3A2008" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#1A0E04" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="200" height="520" fill="#1A0E04" fill-opacity="0.72"/>
+        <rect width="200" height="520" fill="url(#gs2)"/>
+        <!-- 外框 + 內框 (雙重) -->
+        <rect x="9" y="9" width="182" height="502" fill="none" stroke="#C8A020" stroke-width="1.2"/>
+        <rect x="15" y="15" width="170" height="490" fill="none" stroke="#C8A020" stroke-width="0.45" opacity="0.45"/>
+        <rect x="20" y="20" width="160" height="480" fill="none" stroke="#C8A020" stroke-width="0.25" opacity="0.25"/>
+        <!-- 四角裝飾 (更複雜) -->
+        <polyline points="9,36 9,9 36,9" fill="none" stroke="#C8A020" stroke-width="2.4" stroke-linecap="round"/>
+        <polyline points="164,9 191,9 191,36" fill="none" stroke="#C8A020" stroke-width="2.4" stroke-linecap="round"/>
+        <polyline points="9,484 9,511 36,511" fill="none" stroke="#C8A020" stroke-width="2.4" stroke-linecap="round"/>
+        <polyline points="164,511 191,511 191,484" fill="none" stroke="#C8A020" stroke-width="2.4" stroke-linecap="round"/>
+        <!-- 角落小十字 -->
+        <line x1="9" y1="22" x2="9" y2="22" stroke="#C8A020" stroke-width="0"/>
+        <circle cx="9" cy="9" r="2.5" fill="#C8A020" opacity="0.4"/>
+        <circle cx="191" cy="9" r="2.5" fill="#C8A020" opacity="0.4"/>
+        <circle cx="9" cy="511" r="2.5" fill="#C8A020" opacity="0.4"/>
+        <circle cx="191" cy="511" r="2.5" fill="#C8A020" opacity="0.4"/>
+        <!-- 羅馬數字 -->
+        <text x="100" y="42" text-anchor="middle" font-size="11" fill="#C8A020" font-family="Georgia,serif" letter-spacing="2" opacity="0.8">III</text>
+        <!-- 頂部分隔 -->
+        <line x1="28" y1="53" x2="86" y2="53" stroke="#C8A020" stroke-width="0.5" opacity="0.45"/>
+        <polygon points="100,49.5 104,53 100,56.5 96,53" fill="#C8A020" opacity="0.7"/>
+        <line x1="114" y1="53" x2="172" y2="53" stroke="#C8A020" stroke-width="0.5" opacity="0.45"/>
+        <!-- 大三角形 -->
+        <polygon points="100,148 164,272 36,272" fill="none" stroke="#C8A020" stroke-width="1" opacity="0.5"/>
+        <!-- 三角內框線 -->
+        <polygon points="100,160 156,268 44,268" fill="none" stroke="#C8A020" stroke-width="0.4" opacity="0.3"/>
+        <!-- 中央圓 (眼眶) -->
+        <circle cx="100" cy="220" r="28" fill="rgba(26,14,4,0.85)" stroke="#C8A020" stroke-width="0.8" opacity="0.7"/>
+        <!-- 眼睛形狀 -->
+        <path d="M 72,220 Q 100,196 128,220 Q 100,244 72,220 Z" fill="#D4882A" opacity="0.4"/>
+        <path d="M 72,220 Q 100,196 128,220 Q 100,244 72,220 Z" fill="none" stroke="#C8A020" stroke-width="0.8" opacity="0.6"/>
+        <!-- 瞳孔 -->
+        <circle cx="100" cy="220" r="10" fill="#D4882A" opacity="0.55"/>
+        <circle cx="100" cy="220" r="5" fill="#1A0E04"/>
+        <circle cx="100" cy="220" r="2" fill="#C8A020" opacity="0.8"/>
+        <!-- 光芒從三角角落 -->
+        <line x1="100" y1="148" x2="100" y2="178" stroke="#C8A020" stroke-width="0.5" opacity="0.3"/>
+        <!-- 底部分隔 -->
+        <line x1="28" y1="324" x2="86" y2="324" stroke="#C8A020" stroke-width="0.5" opacity="0.45"/>
+        <polygon points="100,320.5 104,324 100,327.5 96,324" fill="#C8A020" opacity="0.7"/>
+        <line x1="114" y1="324" x2="172" y2="324" stroke="#C8A020" stroke-width="0.5" opacity="0.45"/>
+        <text x="100" y="373" text-anchor="middle" font-size="14" fill="#C8A020" font-family="'Noto Sans TC',sans-serif" letter-spacing="4">有點深了</text>
+        <text x="100" y="394" text-anchor="middle" font-size="7.5" fill="#C8A020" font-family="'Noto Sans TC',sans-serif" letter-spacing="0.8" opacity="0.55">說說那些平常不太提的事</text>
+        <line x1="52" y1="408" x2="148" y2="408" stroke="#C8A020" stroke-width="0.4" opacity="0.35"/>
+      </svg>
+      <div class="cat-prog"><div class="cat-prog-fill" id="bar-star2" style="width:0%"></div></div>
+      <div class="cat-count" id="count-star2">0 / 10</div>
+    </div>
+
+    <!-- 🗡️ 真的很深 — 酒紅 × 直刃 + 三重邊框 -->
+    <div class="cat-item" data-cat="star3" onclick="startDraw('star3')" style="animation-delay:.2s">
+      <svg class="cat-bg" viewBox="0 0 200 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="gs3" cx="50%" cy="45%" r="44%">
+            <stop offset="0%" stop-color="#3A1010" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#140606" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="200" height="520" fill="#140606" fill-opacity="0.72"/>
+        <rect width="200" height="520" fill="url(#gs3)"/>
+        <!-- 三重邊框 -->
+        <rect x="8" y="8" width="184" height="504" fill="none" stroke="#C03838" stroke-width="1.4"/>
+        <rect x="14" y="14" width="172" height="492" fill="none" stroke="#C89820" stroke-width="0.6" opacity="0.55"/>
+        <rect x="19" y="19" width="162" height="482" fill="none" stroke="#C03838" stroke-width="0.3" opacity="0.3"/>
+        <!-- 四角裝飾 (最複雜) -->
+        <polyline points="8,36 8,8 36,8" fill="none" stroke="#C89820" stroke-width="2.6" stroke-linecap="round"/>
+        <polyline points="164,8 192,8 192,36" fill="none" stroke="#C89820" stroke-width="2.6" stroke-linecap="round"/>
+        <polyline points="8,484 8,512 36,512" fill="none" stroke="#C89820" stroke-width="2.6" stroke-linecap="round"/>
+        <polyline points="164,512 192,512 192,484" fill="none" stroke="#C89820" stroke-width="2.6" stroke-linecap="round"/>
+        <!-- 角落圓點 + 小叉 -->
+        <circle cx="8" cy="8" r="3" fill="#C89820" opacity="0.5"/>
+        <circle cx="192" cy="8" r="3" fill="#C89820" opacity="0.5"/>
+        <circle cx="8" cy="512" r="3" fill="#C89820" opacity="0.5"/>
+        <circle cx="192" cy="512" r="3" fill="#C89820" opacity="0.5"/>
+        <!-- 邊框刻度（左右） -->
+        <line x1="8" y1="260" x2="14" y2="260" stroke="#C89820" stroke-width="0.8" opacity="0.5"/>
+        <line x1="192" y1="260" x2="186" y2="260" stroke="#C89820" stroke-width="0.8" opacity="0.5"/>
+        <!-- 羅馬數字 -->
+        <text x="100" y="42" text-anchor="middle" font-size="11" fill="#C89820" font-family="Georgia,serif" letter-spacing="2" opacity="0.85">IV</text>
+        <!-- 頂部分隔 -->
+        <line x1="28" y1="53" x2="85" y2="53" stroke="#C89820" stroke-width="0.5" opacity="0.5"/>
+        <polygon points="100,49.5 104,53 100,56.5 96,53" fill="#C89820" opacity="0.75"/>
+        <line x1="115" y1="53" x2="172" y2="53" stroke="#C89820" stroke-width="0.5" opacity="0.5"/>
+        <!-- 中央大圓 -->
+        <circle cx="100" cy="218" r="66" fill="none" stroke="#C03838" stroke-width="0.7" opacity="0.3"/>
+        <circle cx="100" cy="218" r="56" fill="none" stroke="#C89820" stroke-width="0.35" opacity="0.2"/>
+        <!-- 劍身 (主體) -->
+        <polygon points="100,148 106,210 100,218 94,210" fill="#C03838" opacity="0.6"/>
+        <polygon points="100,148 106,210 100,218 94,210" fill="none" stroke="#C89820" stroke-width="0.7" opacity="0.7"/>
+        <!-- 劍身高光 -->
+        <line x1="100" y1="152" x2="100" y2="215" stroke="#E88888" stroke-width="0.6" opacity="0.3"/>
+        <!-- 護手 (crossguard) -->
+        <rect x="82" y="210" width="36" height="6" rx="1" fill="#C03838" opacity="0.7" stroke="#C89820" stroke-width="0.6"/>
+        <!-- 劍柄 -->
+        <rect x="96" y="216" width="8" height="22" rx="2" fill="#C89820" opacity="0.55"/>
+        <!-- 劍柄纏繞花紋 -->
+        <line x1="96" y1="221" x2="104" y2="221" stroke="#E0B030" stroke-width="0.5" opacity="0.5"/>
+        <line x1="96" y1="226" x2="104" y2="226" stroke="#E0B030" stroke-width="0.5" opacity="0.5"/>
+        <line x1="96" y1="231" x2="104" y2="231" stroke="#E0B030" stroke-width="0.5" opacity="0.5"/>
+        <!-- 劍柄底部球 -->
+        <circle cx="100" cy="240" r="5" fill="#C89820" opacity="0.65" stroke="#E0B030" stroke-width="0.5"/>
+        <!-- 劍尖光芒 -->
+        <line x1="100" y1="148" x2="92" y2="162" stroke="#C89820" stroke-width="0.5" opacity="0.35"/>
+        <line x1="100" y1="148" x2="108" y2="162" stroke="#C89820" stroke-width="0.5" opacity="0.35"/>
+        <!-- 四角輻射線 -->
+        <line x1="36" y1="154" x2="70" y2="184" stroke="#C03838" stroke-width="0.4" opacity="0.2"/>
+        <line x1="164" y1="154" x2="130" y2="184" stroke="#C03838" stroke-width="0.4" opacity="0.2"/>
+        <line x1="36" y1="286" x2="70" y2="256" stroke="#C03838" stroke-width="0.4" opacity="0.2"/>
+        <line x1="164" y1="286" x2="130" y2="256" stroke="#C03838" stroke-width="0.4" opacity="0.2"/>
+        <!-- 底部分隔 -->
+        <line x1="28" y1="326" x2="85" y2="326" stroke="#C89820" stroke-width="0.5" opacity="0.5"/>
+        <polygon points="100,322.5 104,326 100,329.5 96,326" fill="#C89820" opacity="0.75"/>
+        <line x1="115" y1="326" x2="172" y2="326" stroke="#C89820" stroke-width="0.5" opacity="0.5"/>
+        <text x="100" y="374" text-anchor="middle" font-size="14" fill="#C89820" font-family="'Noto Sans TC',sans-serif" letter-spacing="4">真的很深</text>
+        <text x="100" y="395" text-anchor="middle" font-size="7.5" fill="#C89820" font-family="'Noto Sans TC',sans-serif" letter-spacing="0.8" opacity="0.55">你準備好了嗎</text>
+        <line x1="52" y1="409" x2="148" y2="409" stroke="#C89820" stroke-width="0.4" opacity="0.35"/>
+      </svg>
+      <div class="cat-prog"><div class="cat-prog-fill" id="bar-star3" style="width:0%"></div></div>
+      <div class="cat-count" id="count-star3">0 / 8</div>
+    </div>
+
+  </div>
+
+  <p class="select-hint">建議從上到下，不用一次到底</p>
+</div>
+
+<!-- CARD VIEW -->
+<div class="screen" id="card-view">
+  <div class="card-topbar">
+    <button class="topbar-back" onclick="goSelect()">← 換類別</button>
+    <div class="topbar-cat" id="topbar-cat-label" data-cat=""></div>
+    <div class="topbar-count" id="topbar-count"></div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:0 24px 8px">
+    <div class="player-indicator" id="player-indicator" style="padding:0;display:none"></div>
+    <button id="mgmt-btn" onclick="openMgmt()" style="display:none;background:none;border:1.5px solid var(--ink-faint);border-radius:100px;font-family:'LINE Seed JP',sans-serif;font-size:10px;color:var(--ink-faint);padding:3px 10px;cursor:pointer;transition:all 0.2s;letter-spacing:0.5px" onmouseover="this.style.borderColor='var(--ink-light)'" onmouseout="this.style.borderColor='var(--ink-faint)'">管理</button>
+  </div>
+
+  <!-- 第一階段：扇形選牌 -->
+  <div class="spread-stage" id="spread-stage" data-cat="">
+    <p class="spread-hint">選一張牌</p>
+    <div class="spread-fan" id="spread-fan"></div>
+  </div>
+
+  <!-- 第二階段：翻牌 -->
+  <div class="card-stage" id="flip-stage" style="display:none">
+    <div class="flip-wrap" id="flip-wrap" data-cat="">
+      <div class="flip-inner" id="flip-inner">
+        <div class="flip-face flip-front">
+          <!-- 塔羅金框 SVG overlay -->
+          <svg class="card-pattern" viewBox="0 0 280 460" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#C4A860" stroke-width="0.3" opacity="0.1"/>
+              </pattern>
+            </defs>
+            <!-- 細金格線 -->
+            <rect width="280" height="460" fill="url(#grid)"/>
+            <!-- 外框粗金線 -->
+            <rect x="12" y="12" width="256" height="436" fill="none" stroke="#C4A860" stroke-width="1.4" opacity="0.7"/>
+            <!-- 內框細金線 -->
+            <rect x="19" y="19" width="242" height="422" fill="none" stroke="#C4A860" stroke-width="0.5" opacity="0.4"/>
+            <!-- 四角 L 形裝飾 (金) -->
+            <path d="M 12 38 L 12 12 L 38 12" stroke="#C4A860" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
+            <path d="M 242 12 L 268 12 L 268 38" stroke="#C4A860" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
+            <path d="M 12 422 L 12 448 L 38 448" stroke="#C4A860" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
+            <path d="M 242 448 L 268 448 L 268 422" stroke="#C4A860" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
+            <!-- 四角小圓點 -->
+            <circle cx="12" cy="12" r="2.5" fill="#C4A860" opacity="0.6"/>
+            <circle cx="268" cy="12" r="2.5" fill="#C4A860" opacity="0.6"/>
+            <circle cx="12" cy="448" r="2.5" fill="#C4A860" opacity="0.6"/>
+            <circle cx="268" cy="448" r="2.5" fill="#C4A860" opacity="0.6"/>
+            <!-- 頂部菱形分隔線 -->
+            <line x1="32" y1="54" x2="124" y2="54" stroke="#C4A860" stroke-width="0.6" opacity="0.45"/>
+            <polygon points="140,50 145,54 140,58 135,54" fill="#C4A860" opacity="0.7"/>
+            <line x1="156" y1="54" x2="248" y2="54" stroke="#C4A860" stroke-width="0.6" opacity="0.45"/>
+            <!-- 底部菱形分隔線 -->
+            <line x1="32" y1="406" x2="124" y2="406" stroke="#C4A860" stroke-width="0.6" opacity="0.45"/>
+            <polygon points="140,402 145,406 140,410 135,406" fill="#C4A860" opacity="0.7"/>
+            <line x1="156" y1="406" x2="248" y2="406" stroke="#C4A860" stroke-width="0.6" opacity="0.45"/>
+            <!-- 中央圓形框 -->
+            <circle cx="140" cy="230" r="80" fill="none" stroke="#C4A860" stroke-width="0.9" opacity="0.35"/>
+            <circle cx="140" cy="230" r="68" fill="none" stroke="#C4A860" stroke-width="0.4" opacity="0.2"/>
+            <!-- 中心點 -->
+            <circle cx="140" cy="230" r="3" fill="#C4A860" opacity="0.3"/>
+          </svg>
+          <!-- 前景 -->
+          <div class="front-content">
+            <div class="front-gem" id="front-icon"></div>
+            <div class="front-cat" id="front-cat"></div>
+          </div>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="question" id="question-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-actions" id="card-actions">
+      <div class="card-btns">
+        <button class="btn-secondary" onclick="skipCard()">換一張</button>
+        <button class="btn-primary" onclick="nextCard()">下一張</button>
+      </div>
+      <p class="card-tip">可以跳過、請別人代答，<br>或帶著好奇心開始分享</p>
+    </div>
+  </div><!-- /flip-stage -->
+</div>
+
+<!-- CAT COMPLETE -->
+<div class="screen" id="cat-complete" data-cat="">
+  <div class="complete-badge" id="complete-badge"></div>
+  <h2 class="complete-title">這組聊完了 ✓</h2>
+  <div class="complete-cat-name" id="complete-cat-name"></div>
+  <p class="complete-desc" id="complete-desc"></p>
+  <div class="complete-divider"></div>
+  <div class="complete-btns">
+    <button class="btn-primary" onclick="replayCat()">再來一輪</button>
+    <button class="btn-secondary" onclick="goSelect()">換個類別</button>
+    <button class="btn-text" onclick="goEnd()">結束遊戲</button>
+  </div>
+</div>
+
+<!-- END -->
+<div class="screen" id="end-screen">
+  <div class="end-emoji">✨</div>
+  <h2 class="end-title">謝謝你們的分享</h2>
+  <p class="end-sub">每一個說出口的故事，都讓彼此更靠近一點。</p>
+
+  <div class="end-stats">
+    <div class="stat">
+      <div class="stat-num" id="end-total">0</div>
+      <div class="stat-label">翻了幾張</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="end-cats">0</div>
+      <div class="stat-label">玩了幾種</div>
+    </div>
+  </div>
+
+  <button class="btn-primary" onclick="restartGame()">再玩一次</button>
+  <button class="btn-text" onclick="goSelect()">換個類別繼續</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="nav-btn" data-target="welcome" onclick="navHome()">
+    <span class="nav-icon">⌂</span>
+    <span class="nav-label">首頁</span>
+  </button>
+  <button class="nav-btn" data-target="players-setup" onclick="navPlayers()">
+    <span class="nav-icon">✦</span>
+    <span class="nav-label">玩家</span>
+  </button>
+  <button class="nav-btn" data-target="select" onclick="goSelect()">
+    <span class="nav-icon">◉</span>
+    <span class="nav-label">分類</span>
+  </button>
+</nav>
+
+<!-- FAB：回饋 -->
+<button class="fab" id="fab" onclick="openFeedback()">✎</button>
+
+<!-- FEEDBACK SHEET -->
+<div class="sheet-overlay" id="feedback-overlay" onclick="if(event.target===this)closeFeedback()">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">給我們回饋</div>
+    <p class="sheet-sub">任何想法、建議、或是遇到的問題，都可以告訴我們</p>
+    <textarea class="sheet-textarea" id="feedback-text" placeholder="寫下你的想法…"></textarea>
+    <div class="sheet-row">
+      <button class="btn-primary" style="flex:1;font-size:13px;padding:12px" onclick="sendFeedback()">送出回饋</button>
+      <button class="sheet-close" onclick="closeFeedback()">✕</button>
+    </div>
+  </div>
+</div>
+
+<!-- PLAYER MGMT SHEET -->
+<div class="sheet-overlay" id="mgmt-overlay" onclick="if(event.target===this)closeMgmt()">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">玩家管理</div>
+    <p class="sheet-sub">▸ 標示目前輪到的人。移除玩家不會影響題目進度。</p>
+    <div class="mgmt-list" id="mgmt-list"></div>
+    <div class="mgmt-input-row">
+      <input class="mgmt-input" id="mgmt-input" type="text" placeholder="加入新玩家" maxlength="10"
+        onkeydown="if(event.key==='Enter')addPlayerMid()">
+      <button class="players-add" onclick="addPlayerMid()">+</button>
+    </div>
+  </div>
+</div>
+
+<!-- TURN OVERLAY -->
+<div id="turn-overlay" onclick="dismissTurnOverlay()">
+  <div class="turn-card">
+    <div class="turn-label">換人了</div>
+    <div class="turn-name" id="turn-name"></div>
+    <div class="turn-tap">點一下繼續</div>
+  </div>
+</div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────
+const QUESTIONS = {
+  ice: {
+    label: '先暖個身',
+    icon: '❄️',
+    total: 25,
+    list: [
+      '你最近一次大笑，是因為什麼？',
+      '如果你的人生是一首歌，會是什麼風格或類型？',
+      '你有什麼奇怪的小習慣或癖好？',
+      '描述你最理想的一個週末下午。',
+      '你最近有什麼讓你感到小小驕傲的事？',
+      '你最喜歡的食物是什麼？它背後有故事嗎？',
+      '在陌生環境裡，你會先注意什麼？',
+      '如果可以在世界上任何地方醒來，你會選哪裡？',
+      '你最近學到的一件有趣的事是什麼？',
+      '你覺得自己是夜貓子還是早起鳥？這影響你的生活嗎？',
+      '你有沒有一個食物組合，別人聽了會覺得很奇怪，但你覺得超好吃？',
+      '如果你可以免費學一樣樂器，你會選什麼？',
+      '你最近讓自己「放縱」了什麼小事？',
+      '你有沒有一個一直沒時間做、但其實很想做的興趣？',
+      '你喜歡一個人旅行，還是跟人一起去？',
+      '你有沒有一部電影或一本書，看了不只一次？',
+      '如果你有一整天完全屬於自己，你最想怎麼安排？',
+      '你有沒有一個「出門一定要帶」的東西？',
+      '你有沒有一個城市，去了一次就一直想回去？',
+      '你覺得自己比較像貓，還是比較像狗？',
+      '你記憶中最美的一頓飯，是在哪裡吃的、跟誰？',
+      '你有沒有一個讓你特別有儀式感的小動作？',
+      '現在馬上給你一張機票，你最想去哪裡？',
+      '你有沒有一個讓你特別有動力的時段？',
+      '如果可以養任何一種動物，你會選什麼？',
+    ]
+  },
+  star1: {
+    label: '開始走心',
+    icon: '✦',
+    total: 25,
+    list: [
+      '你覺得什麼樣的朋友關係讓你最有安全感？',
+      '成長過程中，有沒有一個對你影響很深的大人？',
+      '如果可以立刻擁有一項技能，你會選什麼？為什麼？',
+      '你覺得自己最大的優點是什麼？你是怎麼發現的？',
+      '你最珍惜的一個物品是什麼？它對你有什麼意義？',
+      '你有沒有讓心情變好的「私人儀式」？',
+      '你覺得童年對現在的你有什麼影響？',
+      '如果可以給十年前的自己一句話，你會說什麼？',
+      '你認為一個人最難得的品格是什麼？',
+      '有沒有一件事，你做了很久但其實不確定為什麼要做？',
+      '你覺得你最像爸爸還是媽媽？哪個部分？',
+      '你有沒有一個讓你說「我就是因為這樣，才成為現在的我」的時刻？',
+      '你覺得什麼叫做「成熟」？你覺得自己成熟嗎？',
+      '你在意別人怎麼看你嗎？你有沒有試著不在意過？',
+      '有沒有一件事，你以前很確定，後來卻改變了想法？',
+      '你覺得你的朋友眼中的你，和你自己認識的你，差距大嗎？',
+      '你有沒有做過讓自己意外的決定，最後結果還不錯？',
+      '你最近有沒有一件事，做了之後覺得「這件事值得」？',
+      '你有沒有一個你很佩服的人？是什麼讓你佩服他？',
+      '什麼樣的道別，對你來說最難？',
+      '你覺得「家」對你來說是什麼感覺？',
+      '你有沒有一個從小到大都沒變的特質？',
+      '你對「長大」這件事有什麼感覺？',
+      '你覺得你的人生現在在哪個章節？',
+      '如果你可以跟任何一個人，活在任何一個時代，你會選誰、選哪個時代？',
+    ]
+  },
+  star2: {
+    label: '有點深了',
+    icon: '◈',
+    total: 25,
+    list: [
+      '你上一次哭是什麼時候？是因為什麼？',
+      '你有沒有一個長期的夢想，從來沒跟別人提過？',
+      '你有沒有一段關係，花了很長時間才真正放下？',
+      '你在哪段人生是最孤獨的？那時候你如何面對？',
+      '你覺得自己有什麼特質，常常被別人誤解？',
+      '有沒有一個人，你希望曾經對他說過更多？',
+      '你對未來最深的恐懼是什麼？',
+      '你覺得自己在哪一刻，真正成為了現在的這個人？',
+      '你有沒有一件做了之後最後悔的事？後來和解了嗎？',
+      '「被愛」和「被理解」，對你來說哪個更重要？',
+      '你有沒有一段友情，是無聲無息地散掉的？你有沒有想過原因？',
+      '你有沒有曾經假裝自己沒事，但其實很不好？',
+      '你有沒有一個「如果當時選擇不一樣」的時間點，現在偶爾還會想到？',
+      '你覺得你最大的恐懼，是來自哪裡的？',
+      '你有沒有某個讓你感到羞愧的記憶，偶爾還是會突然浮現？',
+      '你對「原諒」這件事怎麼看？你覺得自己是一個容易原諒別人的人嗎？',
+      '有沒有一個人，你很想再見到，但知道可能不會了？',
+      '你有沒有一件事，花了很長時間才允許自己去喜歡？',
+      '你覺得你的哪一面，是最少人看見的？',
+      '你有沒有曾經為了某個人，改變了自己？後來你怎麼看那件事？',
+      '你有沒有一個夢，是一再重複出現的？你覺得它跟你的生活有關嗎？',
+      '你有沒有一個你一直說「要改」但改不掉的習慣？你覺得為什麼？',
+      '你有沒有一段時間，覺得自己是在「演」一個人，而不是真實地活著？',
+      '你覺得你對「愛」的理解，跟幾年前相比有沒有不一樣？',
+      '你有沒有一個人，你一直在等他先開口，但他好像也在等你？',
+    ]
+  },
+  star3: {
+    label: '真的很深',
+    icon: '▲',
+    total: 23,
+    list: [
+      '如果今天是你人生的最後一天，你最想跟誰在一起？你會對他說什麼？',
+      '什麼樣的失去，對你影響最深遠？你是怎麼走過來的？',
+      '你對自己最難以接受的，是哪一面？',
+      '你覺得你對身邊的某個人，有沒有什麼虧欠？',
+      '如果可以徹底改變人生中的一個決定，你會改變哪一個？',
+      '你覺得你最深的孤獨，是什麼樣子的？',
+      '如果有人真的完全理解了你，你最希望他們理解的是哪一面？',
+      '你有沒有一個秘密，是從來沒跟任何人說過的？',
+      '你有沒有曾經做過一件事，是你知道是錯的，但還是做了？',
+      '你覺得你的人生裡，有沒有一段時期，你對自己很殘忍？',
+      '你有沒有愛過一個人，愛到覺得失去了自己？',
+      '你覺得你最深的不安全感，是從哪裡來的？',
+      '你有沒有一個人，你一直沒辦法真正放下？',
+      '如果你可以回去，對過去某個時刻的自己說一句話，你最想說什麼？',
+      '你有沒有一個關於自己的認知，是最近才承認的？',
+      '你覺得你有沒有給自己足夠的溫柔？',
+      '你有沒有曾經因為太害怕失去，而選擇了放棄？',
+      '如果你現在最愛的人離開了你，你覺得你會怎麼面對？',
+      '你有沒有一段記憶，你一直沒跟任何人提起過？',
+      '你覺得你這一生，有沒有一件事是你真正想做但一直沒有勇氣做的？',
+      '你對死亡這件事，有沒有想過？你怎麼與它相處？',
+      '你有沒有對自己說過「我不值得」？那時候發生了什麼？',
+      '如果你只剩一年的時間，你最想放下的是什麼？',
+    ]
+  }
+};
+
+const SPEECH = [
+  '親愛的朋友，請閉上雙眼。',
+  '在這一刻，我們即將開啟\n一場關於深刻認識彼此的旅程。',
+  '在這裡，不評判對與錯，\n只帶著真誠與善意，去聆聽每一個故事。',
+  '今天我們的支持與接納，\n將成為這場對話最美好的回覆。',
+  '現在，帶著好奇與敞開的心，\n一起踏上這場旅程。',
+];
+
+// ── State ─────────────────────────────────────────────────────────────────
+const used = { ice: new Set(), star1: new Set(), star2: new Set(), star3: new Set() };
+const skipped = { ice: new Set(), star1: new Set(), star2: new Set(), star3: new Set() };
+let currentCat = null;
+let currentIdx = null;
+let isFlipped = false;
+let totalDrawn = 0;
+let catsUsed = new Set();
+let speechStep = 0;
+let speechTimer = null;
+let players = [];
+let currentPlayerIdx = 0;
+
+// ── Navigation ─────────────────────────────────────────────────────────────
+const NAV_SCREENS = new Set(['select','card-view','cat-complete','end-screen']);
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  void el.offsetWidth;
+  el.classList.add('active');
+  const showNav = NAV_SCREENS.has(id);
+  document.getElementById('bottom-nav').classList.toggle('show', showNav);
+  document.getElementById('fab').classList.toggle('show', showNav);
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.target === id);
+  });
+}
+
+function navHome() { show('welcome'); }
+function navPlayers() { renderChips(); show('players-setup'); setTimeout(() => document.getElementById('player-input').focus(), 300); }
+
+// ── Feedback ───────────────────────────────────────────────────────────────
+function openFeedback() {
+  document.getElementById('feedback-overlay').classList.add('show');
+  setTimeout(() => document.getElementById('feedback-text').focus(), 300);
+}
+function closeFeedback() {
+  document.getElementById('feedback-overlay').classList.remove('show');
+}
+function sendFeedback() {
+  const msg = document.getElementById('feedback-text').value.trim();
+  if (!msg) return;
+  const n = (parseInt(localStorage.getItem('fb_count') || '0')) + 1;
+  localStorage.setItem('fb_count', n);
+  const num = String(n).padStart(3, '0');
+  const subject = encodeURIComponent(`feedback-${num}`);
+  const body = encodeURIComponent(msg);
+  window.location.href = `mailto:learning901126@gmail.com?subject=${subject}&body=${body}`;
+  document.getElementById('feedback-text').value = '';
+  closeFeedback();
+}
+
+// ── Player management (mid-game) ───────────────────────────────────────────
+function openMgmt() {
+  renderMgmt();
+  document.getElementById('mgmt-overlay').classList.add('show');
+}
+function closeMgmt() {
+  document.getElementById('mgmt-overlay').classList.remove('show');
+}
+function renderMgmt() {
+  const list = document.getElementById('mgmt-list');
+  if (players.length === 0) {
+    list.innerHTML = '<p style="text-align:center;color:var(--ink-faint);font-size:13px;padding:8px 0">目前是單人模式，加入玩家後即可輪流</p>';
+    return;
+  }
+  list.innerHTML = players.map((name, i) => {
+    const isCurrent = i === currentPlayerIdx;
+    return `<div class="mgmt-player ${isCurrent ? 'current' : ''}">
+      <div class="mgmt-name">
+        ${isCurrent ? '<div class="mgmt-current-dot"></div>' : ''}
+        ${name}
+      </div>
+      <button class="player-chip-remove" onclick="removePlayerMid(${i})">×</button>
+    </div>`;
+  }).join('');
+}
+function addPlayerMid() {
+  const input = document.getElementById('mgmt-input');
+  const name = input.value.trim();
+  if (!name || players.length >= 8) return;
+  players.push(name);
+  input.value = '';
+  input.focus();
+  updatePlayerIndicator();
+  renderMgmt();
+}
+function removePlayerMid(idx) {
+  if (players.length === 1) {
+    players = []; currentPlayerIdx = 0;
+    updatePlayerIndicator(); closeMgmt(); return;
+  }
+  players.splice(idx, 1);
+  if (idx < currentPlayerIdx) currentPlayerIdx = Math.max(0, currentPlayerIdx - 1);
+  else if (idx === currentPlayerIdx) currentPlayerIdx = currentPlayerIdx % players.length;
+  updatePlayerIndicator();
+  renderMgmt();
+}
+
+function goSpeech() {
+  show('speech');
+  initSpeech();
+}
+
+function goPlayersSetup() {
+  renderChips();
+  show('players-setup');
+  setTimeout(() => document.getElementById('player-input').focus(), 300);
+}
+
+function goSelect() {
+  updateCounts();
+  show('select');
+}
+
+// ── Players ───────────────────────────────────────────────────────────────
+function addPlayer() {
+  const input = document.getElementById('player-input');
+  const name = input.value.trim();
+  if (!name || players.length >= 8) return;
+  players.push(name);
+  input.value = '';
+  input.focus();
+  renderChips();
+}
+
+function removePlayer(idx) {
+  players.splice(idx, 1);
+  renderChips();
+}
+
+function renderChips() {
+  const container = document.getElementById('players-chips');
+  const hint = document.getElementById('players-count-hint');
+  const startBtn = document.getElementById('players-start-btn');
+  container.innerHTML = players.map((name, i) =>
+    `<div class="player-chip">${name}
+      <button class="player-chip-remove" onclick="removePlayer(${i})">×</button>
+    </div>`
+  ).join('');
+  if (players.length === 0) {
+    hint.textContent = '';
+    startBtn.style.opacity = '0.4';
+    startBtn.style.pointerEvents = 'none';
+  } else if (players.length === 1) {
+    hint.textContent = '再加一個人就可以輪流了';
+    startBtn.style.opacity = '1';
+    startBtn.style.pointerEvents = '';
+  } else {
+    hint.textContent = `${players.length} 個人，輪流翻牌`;
+    startBtn.style.opacity = '1';
+    startBtn.style.pointerEvents = '';
+  }
+}
+
+function startWithPlayers() {
+  if (players.length === 0) return;
+  currentPlayerIdx = 0;
+  goSelect();
+}
+
+function skipPlayers() {
+  players = [];
+  currentPlayerIdx = 0;
+  goSelect();
+}
+
+/* ── TUTORIAL ── */
+let tutStep = 0;
+const TUT_TOTAL = 5;
+
+function openTutorial() {
+  tutStep = 0;
+  renderTutorial();
+  const ov = document.getElementById('tutorial-overlay');
+  ov.style.display = 'flex';
+  // force reflow so animation plays
+  void ov.offsetWidth;
+  ov.classList.add('show');
+  // re-animate sheet
+  const sheet = document.getElementById('tutorial-sheet');
+  sheet.style.animation = 'none';
+  void sheet.offsetWidth;
+  sheet.style.animation = '';
+}
+
+function closeTutorial() {
+  const ov = document.getElementById('tutorial-overlay');
+  ov.classList.remove('show');
+  setTimeout(() => { ov.style.display = 'none'; }, 300);
+}
+
+function closeTutorialOnBg(e) {
+  if (e.target === document.getElementById('tutorial-overlay')) closeTutorial();
+}
+
+function tutNav(dir) {
+  tutStep = Math.max(0, Math.min(TUT_TOTAL - 1, tutStep + dir));
+  renderTutorial();
+}
+
+function renderTutorial() {
+  // steps
+  document.querySelectorAll('.tutorial-step').forEach((el, i) => {
+    el.classList.toggle('active', i === tutStep);
+  });
+  // progress dots
+  const prog = document.getElementById('tut-progress');
+  prog.innerHTML = '';
+  for (let i = 0; i < TUT_TOTAL; i++) {
+    const d = document.createElement('div');
+    d.className = 'tutorial-dot' + (i === tutStep ? ' active' : '');
+    prog.appendChild(d);
+  }
+  // nav buttons
+  const prev = document.getElementById('tut-prev');
+  const next = document.getElementById('tut-next');
+  prev.disabled = tutStep === 0;
+  const isLast = tutStep === TUT_TOTAL - 1;
+  next.textContent = isLast ? '開始探索 ✦' : '下一步 →';
+  next.className = 'tut-next primary';
+  if (isLast) {
+    next.onclick = closeTutorial;
+  } else {
+    next.onclick = () => tutNav(1);
+  }
+}
+
+function updatePlayerIndicator() {
+  const el = document.getElementById('player-indicator');
+  const btn = document.getElementById('mgmt-btn');
+  if (players.length >= 2) {
+    el.innerHTML = `輪到 <strong>${players[currentPlayerIdx]}</strong>`;
+    el.style.display = 'block';
+    if (btn) btn.style.display = 'inline-block';
+  } else {
+    el.style.display = 'none';
+    if (btn) btn.style.display = 'none';
+  }
+}
+
+function showTurnOverlay(name, callback) {
+  document.getElementById('turn-name').textContent = name;
+  const overlay = document.getElementById('turn-overlay');
+  overlay._cb = callback;
+  overlay.classList.add('show');
+}
+
+function dismissTurnOverlay() {
+  const overlay = document.getElementById('turn-overlay');
+  overlay.classList.remove('show');
+  if (overlay._cb) { const cb = overlay._cb; overlay._cb = null; cb(); }
+}
+
+function goEnd() {
+  document.getElementById('end-total').textContent = totalDrawn;
+  document.getElementById('end-cats').textContent = catsUsed.size;
+  show('end-screen');
+}
+
+function restartGame() {
+  Object.keys(used).forEach(k => used[k].clear());
+  Object.keys(skipped).forEach(k => skipped[k].clear());
+  totalDrawn = 0;
+  catsUsed = new Set();
+  currentPlayerIdx = 0;
+  updateCounts();
+  show('welcome');
+}
+
+// ── Speech ─────────────────────────────────────────────────────────────────
+function initSpeech() {
+  clearTimeout(speechTimer);
+  speechStep = 0;
+
+  // Build dots
+  const dotsEl = document.getElementById('speech-dots');
+  dotsEl.innerHTML = SPEECH.map((_, i) =>
+    `<div class="speech-dot" id="sdot-${i}"></div>`
+  ).join('');
+
+  // Build lines
+  const bodyEl = document.getElementById('speech-body');
+  bodyEl.innerHTML = SPEECH.map((line, i) =>
+    `<p class="speech-line" id="sline-${i}" style="white-space:pre-line">${line}</p>`
+  ).join('') +
+  `<div class="speech-cta" id="speech-cta">
+     <button class="btn-primary" onclick="goPlayersSetup()">我們準備好了</button>
+   </div>`;
+
+  revealSpeechLine(0);
+}
+
+function revealSpeechLine(i) {
+  if (i >= SPEECH.length) {
+    // 呼吸停頓：0.5s 純空白後才出現按鈕
+    speechTimer = setTimeout(() => {
+      document.getElementById('speech-cta').classList.add('show');
+    }, 500);
+    return;
+  }
+  const line = document.getElementById('sline-' + i);
+  const dot = document.getElementById('sdot-' + i);
+  if (line) line.classList.add('show');
+  if (dot) dot.classList.add('active');
+  speechTimer = setTimeout(() => revealSpeechLine(i + 1), 2000);
+}
+
+// ── Draw card ──────────────────────────────────────────────────────────────
+function startDraw(cat) {
+  currentCat = cat;
+  drawCard(cat);
+}
+
+function drawCard(cat) {
+  const data = QUESTIONS[cat];
+  let pool = data.list.map((_, i) => i)
+    .filter(i => !used[cat].has(i) && !skipped[cat].has(i));
+
+  if (pool.length === 0 && skipped[cat].size > 0) {
+    skipped[cat].clear();
+    pool = data.list.map((_, i) => i).filter(i => !used[cat].has(i));
+  }
+
+  if (pool.length === 0) {
+    showCatComplete(cat);
+    return;
+  }
+
+  currentIdx = pool[Math.floor(Math.random() * pool.length)];
+  used[cat].add(currentIdx);
+  totalDrawn++;
+  catsUsed.add(cat);
+
+  const label = document.getElementById('topbar-cat-label');
+  label.textContent = data.label;
+  label.setAttribute('data-cat', cat);
+  updateTopbarCount(cat);
+  updateCounts();
+  showSpread(cat);
+  show('card-view');
+  updatePlayerIndicator();
+}
+
+// ── Spread ─────────────────────────────────────────────────────────────────
+function showSpread(cat) {
+  const spreadStage = document.getElementById('spread-stage');
+  const fan = document.getElementById('spread-fan');
+  spreadStage.setAttribute('data-cat', cat);
+  spreadStage.style.display = 'flex';
+  spreadStage.style.opacity = '';
+  spreadStage.classList.remove('fading');
+  document.getElementById('flip-stage').style.display = 'none';
+  document.getElementById('flip-stage').classList.remove('flip-stage-enter');
+
+  fan.innerHTML = '';
+  const count = Math.floor(Math.random() * 5) + 3; // 3–7 張
+  const maxAngle = count <= 3 ? 12 : count <= 5 ? 16 : 18;
+  const step = count === 1 ? 0 : (maxAngle * 2) / (count - 1);
+  const ROTATIONS = Array.from({ length: count }, (_, i) => -maxAngle + i * step);
+  ROTATIONS.forEach((rot, i) => {
+    const card = document.createElement('div');
+    card.className = 'spread-card';
+    card.style.setProperty('--r', rot + 'deg');
+    card.style.animationDelay = (i * 0.06) + 's';
+    // 照片底圖 per category
+    const photoMap = {
+      ice:   "max-komthongvijit-gpqpneeE86E-unsplash.jpg",
+      star1: "aaron-burden-t8MgrNitecE-unsplash.jpg",
+      star2: "pawel-czerwinski-beBBYVJ_4MM-unsplash.jpg",
+      star3: "alex-QuPbnSMgu4c-unsplash.jpg"
+    };
+    const darkMap = { ice: '#0C1C35', star1: '#0B1E12', star2: '#1A0E04', star3: '#140606' };
+    const goldMap = { ice: '#C4A860', star1: '#A8C060', star2: '#C8A020', star3: '#C89820' };
+    const gold = goldMap[cat] || '#C4A860';
+    card.style.backgroundImage = `url('${photoMap[cat]}')`;
+    card.style.backgroundSize = 'cover';
+    card.style.backgroundPosition = 'center';
+    card.innerHTML = `<svg viewBox="0 0 140 230" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+      <defs><pattern id="sg${i}" width="12" height="12" patternUnits="userSpaceOnUse">
+        <path d="M 12 0 L 0 0 0 12" fill="none" stroke="${gold}" stroke-width="0.25" opacity="0.08"/>
+      </pattern></defs>
+      <!-- 暗化遮罩 -->
+      <rect width="140" height="230" fill="${darkMap[cat]}" fill-opacity="0.62"/>
+      <!-- 細格線 -->
+      <rect width="140" height="230" fill="url(#sg${i})"/>
+      <!-- 外框金線 -->
+      <rect x="6" y="6" width="128" height="218" fill="none" stroke="${gold}" stroke-width="1.1" opacity="0.75"/>
+      <!-- 內框金線 -->
+      <rect x="11" y="11" width="118" height="208" fill="none" stroke="${gold}" stroke-width="0.4" opacity="0.4"/>
+      <!-- 四角 L 形 -->
+      <path d="M 6 20 L 6 6 L 20 6" stroke="${gold}" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <path d="M 120 6 L 134 6 L 134 20" stroke="${gold}" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <path d="M 6 210 L 6 224 L 20 224" stroke="${gold}" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <path d="M 120 224 L 134 224 L 134 210" stroke="${gold}" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <!-- 中央圓 -->
+      <circle cx="70" cy="115" r="38" fill="none" stroke="${gold}" stroke-width="0.7" opacity="0.35"/>
+      <!-- 頂部分隔線菱形 -->
+      <line x1="18" y1="34" x2="60" y2="34" stroke="${gold}" stroke-width="0.5" opacity="0.4"/>
+      <polygon points="70,31 73,34 70,37 67,34" fill="${gold}" opacity="0.6"/>
+      <line x1="80" y1="34" x2="122" y2="34" stroke="${gold}" stroke-width="0.5" opacity="0.4"/>
+      <!-- 底部分隔線菱形 -->
+      <line x1="18" y1="196" x2="60" y2="196" stroke="${gold}" stroke-width="0.5" opacity="0.4"/>
+      <polygon points="70,193 73,196 70,199 67,196" fill="${gold}" opacity="0.6"/>
+      <line x1="80" y1="196" x2="122" y2="196" stroke="${gold}" stroke-width="0.5" opacity="0.4"/>
+      <!-- 中心小點 -->
+      <circle cx="70" cy="115" r="2.5" fill="${gold}" opacity="0.35"/>
+    </svg>`;
+    card.addEventListener('click', () => selectSpreadCard(card, cat));
+    fan.appendChild(card);
+  });
+}
+
+function selectSpreadCard(selectedCard, cat) {
+  // 鎖定所有牌防止重複點擊
+  document.querySelectorAll('.spread-card').forEach(c => {
+    c.style.pointerEvents = 'none';
+    if (c !== selectedCard) c.classList.add('dismissed');
+  });
+
+  // 單一連續動畫：抬高 → 射出
+  selectedCard.classList.add('pulling');
+
+  // spread 淡出
+  document.getElementById('spread-stage').classList.add('fading');
+
+  // 卡飛出後切到翻牌（略早一點，有重疊感）
+  setTimeout(() => enterFlipStage(cat), 420);
+}
+
+function enterFlipStage(cat) {
+  const data = QUESTIONS[cat];
+
+  document.getElementById('spread-stage').style.display = 'none';
+
+  const flipStage = document.getElementById('flip-stage');
+  flipStage.style.display = 'flex';
+  flipStage.classList.add('flip-stage-enter');
+
+  const flipWrap = document.getElementById('flip-wrap');
+  flipWrap.setAttribute('data-cat', cat);
+  flipWrap.classList.remove('lifting', 'no-intro', 'reveal-drop');
+
+  document.getElementById('front-icon').textContent = data.icon;
+  document.getElementById('front-icon').style.fontSize = '22px';
+  document.getElementById('front-cat').textContent = data.label;
+  document.getElementById('question-text').textContent = data.list[currentIdx];
+  document.getElementById('flip-inner').classList.remove('flipped');
+  document.getElementById('card-actions').classList.remove('show');
+  isFlipped = false;
+
+  // 強制 reflow，再加 reveal-drop
+  void flipWrap.offsetWidth;
+  flipWrap.classList.add('reveal-drop');
+
+  // 落下後接翻牌（reveal-drop 0.52s + 小緩衝）
+  setTimeout(() => flipCardDirect(), 560);
+}
+
+function flipCardDirect() {
+  if (isFlipped) return;
+  isFlipped = true;
+  const inner = document.getElementById('flip-inner');
+  inner.classList.add('flipped');
+  setTimeout(() => {
+    document.getElementById('card-actions').classList.add('show');
+  }, 950);
+}
+
+
+
+function isCatDone(cat) {
+  const data = QUESTIONS[cat];
+  let pool = data.list.map((_, i) => i)
+    .filter(i => !used[cat].has(i) && !skipped[cat].has(i));
+  if (pool.length === 0 && skipped[cat].size > 0) {
+    pool = data.list.map((_, i) => i).filter(i => !used[cat].has(i));
+  }
+  return pool.length === 0;
+}
+
+function exitFlipThen(callback, skipOverlay = false) {
+  const fw = document.getElementById('flip-wrap');
+  document.getElementById('card-actions').classList.remove('show');
+  fw.classList.remove('no-intro', 'flipping', 'reveal-drop', 'lifting', 'exit-down');
+  void fw.offsetWidth;
+  fw.classList.add('exit-down');
+  setTimeout(() => {
+    fw.classList.remove('exit-down');
+    if (players.length >= 2 && !skipOverlay) {
+      currentPlayerIdx = (currentPlayerIdx + 1) % players.length;
+      showTurnOverlay(players[currentPlayerIdx], () => {
+        updatePlayerIndicator();
+        callback();
+      });
+    } else {
+      callback();
+    }
+  }, 320);
+}
+
+function skipCard() {
+  if (currentIdx !== null) skipped[currentCat].add(currentIdx);
+  exitFlipThen(() => drawCard(currentCat), isCatDone(currentCat));
+}
+
+function nextCard() {
+  exitFlipThen(() => drawCard(currentCat), isCatDone(currentCat));
+}
+
+function showCatComplete(cat) {
+  const data = QUESTIONS[cat];
+  const screen = document.getElementById('cat-complete');
+  screen.setAttribute('data-cat', cat);
+
+  document.getElementById('complete-badge').textContent = data.icon;
+  document.getElementById('complete-cat-name').textContent = data.label;
+
+  const descs = {
+    ice:   '熱身完成！你們已經聊過所有輕鬆的題目了。\n準備往深處走，還是就這樣就好？',
+    star1: '你們開始對彼此有點了解了。\n要繼續挖深，還是就停在這個舒適的地方？',
+    star2: '這些題目都回答過了，不容易。\n要試試最深的那一組嗎？',
+    star3: '全部都聊過了。謝謝你們願意說出那些話。',
+  };
+  document.getElementById('complete-desc').textContent = descs[cat];
+
+  updateCounts();
+  show('cat-complete');
+}
+
+function replayCat() {
+  // 重置這個類別，重新來一輪
+  used[currentCat].clear();
+  skipped[currentCat].clear();
+  updateCounts();
+  drawCard(currentCat);
+}
+
+function updateTopbarCount(cat) {
+  const data = QUESTIONS[cat];
+  const seen = used[cat].size;
+  document.getElementById('topbar-count').textContent = `本局 ${seen} 張`;
+}
+
+function updateCounts() {
+  Object.keys(QUESTIONS).forEach(cat => {
+    const data = QUESTIONS[cat];
+    const seen = used[cat].size;
+    const total = data.total;
+    const pct = Math.round((seen / total) * 100);
+    const countEl = document.getElementById('count-' + cat);
+    const barEl = document.getElementById('bar-' + cat);
+    if (countEl) countEl.textContent = `${seen} / ${total}`;
+    if (barEl) barEl.style.width = pct + '%';
+  });
+}
+</script>
+</body>
+</html>
